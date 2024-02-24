@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "free_spins",
+  "info": {
+    "singularName": "free-spin",
+    "pluralName": "free-spins",
+    "displayName": "FreeSpin"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "value": {
+      "type": "string"
+    }
+  }
+}
