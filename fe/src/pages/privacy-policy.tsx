@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout"
 
+
 const PolicyPage = () => {
     return (
         <div>

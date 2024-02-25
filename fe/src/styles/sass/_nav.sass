@@ -48,3 +48,77 @@ html, body, body > *:first-child
             &:hover, &:active, &:focus
                 color: $main
                 text-decoration: underline
+
+    &-top
+        display: grid
+        gap: 24px
+        grid-template-columns: .65fr 2fr .65fr
+        margin-top: 24px
+        border-top: 1px solid rgba($white, 0.5)
+        +ft(25, 25*1.4, 400)
+
+        +maw(1240)
+            grid-template-columns: .65fr 2fr 
+
+            .col:last-child
+                grid-column: 1/-1
+                justify-self: center
+                text-align: center
+
+        +maw(1000)
+            +ft(17, 17*1.4, 500)
+
+        +maw(780)
+            grid-template-columns: 1fr 
+                
+            .nav-col > a
+                text-transform: uppercase
+                +ft(14, 14*1.4, 700)
+
+            .col:first-child
+                grid-column: 1/-1
+                justify-self: center
+                text-align: center
+
+        .nav
+            display: grid
+            column-gap: 36px
+            row-gap: 16px
+            grid-template-columns: repeat(auto-fit,minmax(100px, auto))
+
+            &-col
+                & > a
+                    display: block
+
+                a
+                    transition: $trs
+                    &:hover, &:active, &:focus
+                        color: $main
+                        text-decoration: underline
+
+                ul
+                    margin-top: 24px
+
+                li a
+                    display: block
+                    margin-bottom: 16px
+                    +ft(17, 17*1.4, 500)
+                    
+                    +maw(1000)
+                        +ft(13, 13*1.4, 500)
+
+.soc
+    display: inline-flex
+    gap: 16px
+    margin-top: 24px
+
+    a
+        display: block
+        transition: $trs
+        color: $black
+        &:hover, &:active, &:focus
+            transform: scale(1.1) rotate(-15deg)
+
+        & > *
+            color: $black
+

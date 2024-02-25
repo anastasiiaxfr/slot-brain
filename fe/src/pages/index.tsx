@@ -1,10 +1,12 @@
 import Layout from "@/components/Layout"
+import Subscribe from "@/components/Sections/Subscribe"
+
 
 export default function Home() {
   return (
     <Layout>
-      <article className="container py-12 sm:py-24">
-        <h1>home page</h1>
+      <article className="">
+        <Subscribe />
       </article>
     </Layout>
   )

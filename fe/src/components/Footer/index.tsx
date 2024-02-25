@@ -1,4 +1,87 @@
 import Link from "next/link"
+import Logo from "@/components/Logo"
+import Telegram from "@/components/Telegram"
+
+import TmIcon from "@/assets/icons/tm.svg"
+import FbIcon from "@/assets/icons/fb.svg"
+import ImIcon from "@/assets/icons/im.svg"
+
+const soc = [
+    {
+        icon: <TmIcon />,
+        title: "telegram",
+        url: "/"
+    },
+    {
+        icon: <ImIcon />,
+        title: "instagram",
+        url: "/"
+    },
+    {
+        icon: <FbIcon />,
+        title: "facebook",
+        url: "/"
+    },
+]
+
+
+const menu = [
+    {
+        title: "Home",
+        url: "/"
+    },
+    {
+        title: "Casino Reviews",
+        url: "/casinos",
+        links: [
+            {
+                title: "Top Paying Casinos",
+                url: "/"
+            },
+            {
+                title: "The real machines.",
+                url: "/"
+            }
+        ]
+    },
+    {
+        title: "Bonuses",
+        url: "/bonuses",
+        links: [
+            {
+                title: "Read LevelUp",
+                url: "/"
+            },
+            {
+                title: "Read Stay Casino",
+                url: "/"
+            },
+            {
+                title: "Read Sloto zen",
+                url: "/"
+            }
+        ]
+    },
+    {
+        title: "Games",
+        url: "/games",
+        links: [
+            {
+                title: "Weekly Cashback",
+                url: "/"
+            },
+            {
+                title: "Gongratulations",
+                url: "/"
+            }
+        ]
+    },
+    {
+        title: "Blog",
+        url: "/blog"
+    }
+]
+
 
 
 const Footer = () => {
@@ -6,6 +89,36 @@ const Footer = () => {
         <footer className="footer">
             <div className="container">
                 <div className="footer-top">
+                    <div className="col">
+                        <Logo />
+                        <Telegram type="sm" />
+                    </div>
+                    <div className="col">
+                        <nav className="nav">
+                            {menu.map((i: any, ind: number) => (
+                                <div className="nav-col" key={ind}>
+                                    <Link href={i.url} >{i.title}</Link>
+                                    {i.links ? <ul>
+                                        {i.links?.map((j: any, ind: number) => (
+                                            <li key={ind}><Link href={j.url}>{j.title}</Link></li>
+                                        ))}
+                                    </ul> : null}
+                                </div>
+                            ))}
+                        </nav>
+                    </div>
+                    <div className="col">
+                        <p>Contact:</p>
+
+                        <div className="soc">
+                            {soc.map((i: any, ind: number) => (
+                                <Link href={i.url} key={ind}>
+                                    {i.icon}
+                                </Link>
+                            ))}
+                        </div>
+
+                    </div>
 
                 </div>
                 <div className="footer-mdl">
