@@ -1,0 +1,50 @@
+html, body, body > *:first-child
+    display: flex
+    flex-direction: column
+    height: 100%
+    min-height: 100vh
+    overflow: hidden
+    overflow-y: auto
+    margin: 0
+    padding: 0
+
+.container
+    max-width: 1760px
+    margin-left: auto
+    margin-right: auto
+    padding-left: 20px
+    padding-right: 20px
+
+.wrapper
+    flex: 1 0 auto
+
+.footer
+    background-color: $black
+    color: $white
+
+    &-btm, &-mdl, &-top
+        padding: 24px 0
+
+    &-btm, &-mdl
+        text-align: center
+
+    &-btm
+        +ft(13, 13*1.4, 400)
+        color: rgba($white, 0.7)
+
+    &-mdl
+        display: flex
+        flex-wrap: wrap
+        column-gap: 75px
+        row-gap: 16px
+        justify-content: center
+        +ft(20, 20*1.4, 500)
+        color: rgba($white, 0.8)
+        border: 1px solid rgba($white, 0.5)
+        border-width: 1px 0
+
+        a
+            transition: $trs
+            &:hover, &:active, &:focus
+                color: $main
+                text-decoration: underline

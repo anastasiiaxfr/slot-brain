@@ -1,0 +1,38 @@
+@import vars
+
+:root
+    --mawTab: 1030px
+    --cardMaw: 320px
+    --tabSidebarMaw: 270px
+
+    --hero-sidebar-width: 370px
+    --sidebar-width: 268px
+    --sidebar-width-sm: 75px
+    --headerH: 68px
+    
+    --logoW: 156px
+    --logoH: 36px
+
+    --gap: 16px
+    --gapSm: 12px
+    --gapXs: 8px
+    --gapMd: 24px
+    --gapLg: 32px
+
+    --brsXxs: 6px
+    --brsXs: 10px
+    --brsSm: 15px
+    --brsMd: 20px
+    --brsLg: 28px
+
+    +maw($xmd)
+        --logoW: 36px
+        --hero-sidebar-width: 330px
+    +maw($md)
+        --hero-sidebar-width: 100%
+    +maw($sm)
+        --brsLg: 12px
+        --brsMd: 12px
+    +maw($xs)
+        --brsLg: 10px
+        --brsMd: 10px
