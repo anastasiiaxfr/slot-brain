@@ -1,19 +1,24 @@
 import Link from "next/link"
 import Image from "next/image"
+
+
 import styles from "./styles.module.sass"
-import games from "./constant"
+import casinos from "./constant"
 
-
-export default function Games() {
+export default function Casino() {
     return (
-        <section className="section games">
+        <section className="section casino">
             <div className="container">
-                <h2>Games</h2>
-                <p>We have the most free slots on the internet. Play thousands of games for free.</p>
+                <h2>
+                    Casino Reviews
+                </h2>
+                <p>
+                    Top Paying Casinos. They’re just like the real machines.
+                </p>
 
                 <div className={styles.cards}>
-                    {games.map((i: any, ind: number) => (
-                        <Link className={styles.card} href={i.url} key={ind}>
+                    {casinos.map((i: any, ind: number) => (
+                        <Link href={i.url} key={ind} className={styles.card}>
                             <div className={styles.card_wrap}>
                                 <Image src={i.img} alt={i.title} />
                             </div>
@@ -21,16 +26,16 @@ export default function Games() {
                                 <div className={styles.card_title}>
                                     {i.title}
                                 </div>
+                                <div className={styles.card_description}>
+                                    {i.profit}
+                                </div>
                                 <button className={styles.card_btn}>
-                                    Play for free
+                                    Learn More
                                 </button>
                             </div>
                         </Link>
                     ))}
-
-
                 </div>
-
 
             </div>
         </section>
