@@ -1,91 +1,83 @@
 @import 'src/styles/sass/vars.sass'
 
-.blog
-    h2 + p
-        margin-top: var(--gap)
-    
-    p
-        +ft(30, 30*1.4, 400)
+.cards
+    display: grid
+    gap: var(--gapMd)
+    grid-template-columns: 2fr 1fr 1fr
+    margin-top: var(--gapLg)
 
-    &_cards
-        display: grid
-        gap: var(--gapMd)
-        grid-template-columns: 2fr 1fr 1fr
-        margin-top: var(--gapLg)
+.card
+    box-shadow: $bxsd
+    border-radius: var(--brsXs)
+    transition: $trs
 
-    &_card
-        box-shadow: 0 3px 10px 0 rgba($black, .25)
-        border-radius: var(--brsXs)
-        transition: $trs
+    &:hover, &:focus, &:active
+        box-shadow: 0 3px 10px 0 rgba($black, .5)
 
-        &:hover, &:focus, &:active
-            box-shadow: 0 3px 10px 0 rgba($black, .5)
-    
-        &:first-child
-            .blog_card_wrap
-                padding-top: 25%
+    &:first-child
+        .card_wrap
+            padding-top: 25%
 
-        &_content
-            padding: var(--gap) var(--gapSm)
+    &_content
+        padding: var(--gap) var(--gapSm)
 
-        &_title
-            margin-bottom: var(--gapXs)
-            text-transform: uppercase
-            +ft(22, 22*1.4, 400)
+    &_title
+        margin-bottom: var(--gapXs)
+        text-transform: uppercase
+        +ft(22, 22*1.4, 400)
 
-        &_description
-            margin-bottom: var(--gapMd)
-            +ft(17, 17*1.4, 400)
-            color: rgba($black, 0.55)
+    &_description
+        margin-bottom: var(--gapMd)
+        +ft(17, 17*1.4, 400)
+        color: rgba($black, 0.55)
 
-        &_info
-            +flex(flex, center, space-between, wrap)
+    &_info
+        +flex(flex, center, space-between, wrap)
+        gap: var(--gapXs)
+        +ft(13, 13, 400)
+        color: rgba($black, 0.5)
+
+        div
+            display: grid
+            grid-template-columns: 1fr 1fr
+            gap: var(--gap)
+            align-items: center
+        
+        span
+            display: flex
             gap: var(--gapXs)
-            +ft(13, 13, 400)
-            color: rgba($black, 0.5)
+            align-items: center
 
-            div
-                display: grid
-                grid-template-columns: 1fr 1fr
-                gap: var(--gap)
-                align-items: center
-            
-            span
-                display: flex
-                gap: var(--gapXs)
-                align-items: center
+    &_wrap
+        position: relative
+        padding-top: 50%
+        overflow: hidden
+        border-radius: var(--brsXs) var(--brsXs) 0 0
 
-        &_wrap
-            position: relative
-            padding-top: 50%
-
-            & > *
-                +ps(absolute, (l, 0), (t, 0))
-                +sz(100%, 100%)
-                object-fit: cover
+        & > *
+            +ps(absolute, (l, 0), (t, 0))
+            +sz(100%, 100%)
+            object-fit: cover
+                
                 
 
-    +maw($md)
-        p
-            +ft(18, 18*1.4, 400)
++maw($md)
+    .cards
+        grid-template-columns: 1fr 1fr 1fr
 
-        &_cards
-            grid-template-columns: 1fr 1fr 1fr
+    .card
+        &_title
+            +ft(16, 16*1.4, 700)
+        
+        &:first-child
+            .card_wrap
+                padding-top: 50%
 
-        &_card
-            &_title
-                +ft(16, 16*1.4, 700)
-            
-            &:first-child
-                .blog_card_wrap
-                    padding-top: 50%
++maw($sm)
+    .cards
+        grid-template-columns: 1fr 1fr
+    
 
-    +maw($sm)
-        &_cards
-            grid-template-columns: 1fr 1fr
-        p
-            +ft(16, 16*1.4, 400)
-
-    +maw($xs)
-        &_cards
-            grid-template-columns: 1fr
++maw($xs)
+    .cards
+        grid-template-columns: 1fr

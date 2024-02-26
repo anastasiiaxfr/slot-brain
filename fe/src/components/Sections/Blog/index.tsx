@@ -17,21 +17,21 @@ export default function Blog() {
                     The most interesting thing about the Slot brain is here
                 </p>
 
-                <div className={styles.blog_cards}>
+                <div className={styles.cards}>
 
                     {cards.map((i: any, ind: number) => (
-                        <Link className={styles.blog_card} href="/" key={ind}>
-                            <div className={styles.blog_card_wrap}>
+                        <Link className={styles.card} href="/" key={ind}>
+                            <div className={styles.card_wrap}>
                                 <Image src={i.img} alt={i.title} />
                             </div>
-                            <div className={styles.blog_card_content}>
-                                <div className={styles.blog_card_title}>
+                            <div className={styles.card_content}>
+                                <div className={styles.card_title}>
                                     {i.title}
                                 </div>
-                                <div className={styles.blog_card_description}>
+                                <div className={styles.card_description}>
                                     {i.description}
                                 </div>
-                                <div className={styles.blog_card_info}>
+                                <div className={styles.card_info}>
                                     <span>
                                         <IconPubDate width="16" height="16" />{i.pub_date}
                                     </span>
