@@ -11,7 +11,7 @@ const Subscribe = () => {
     return (
         <section className={styles.subscribe}>
             <div className="container">
-                <Image src={SubscribeImg} />
+                <Image src={SubscribeImg} alt="" />
                 <div className={styles.subscribe_container}>
                     <h2>Awesome bonuses, new casinos and more!</h2>
                     <p className={styles.subscribe_text}>Subscribe to our newsletter to take advantage of our fantastic offer.The latest casinos and compilations of news and guides related to gambling!</p>

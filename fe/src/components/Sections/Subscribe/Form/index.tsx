@@ -2,7 +2,7 @@ import styles from "./styles.module.sass"
 
 export default function Form() {
     return (
-        <form className={styles.form}>
+        <form className={styles.form} action="/" method="POST" noValidate>
             <div className={styles.form_field}>
                 <label htmlFor="email" className="sr-only">
                     Email

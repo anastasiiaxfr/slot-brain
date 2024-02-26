@@ -8,19 +8,37 @@ html, body, body > *:first-child
     margin: 0
     padding: 0
 
+.wrapper
+    flex: 1 0 auto
+
 .container
-    max-width: 1760px
+    max-width: 1400px // 1546px
     margin-left: auto
     margin-right: auto
     padding-left: 20px
     padding-right: 20px
 
-.wrapper
-    flex: 1 0 auto
+.row
+    display: flex
+    flex-wrap: wrap
+
+.j-center
+    justify-content: center
+
+.section
+    margin-top: 124px
+    margin-bottom: 124px
+
+    +maw($md)
+        margin-top: 48px
+        margin-bottom: 48px
 
 .footer
     background-color: $black
     color: $white
+
+    .container
+        max-width: 1760px
 
     &-btm, &-mdl, &-top
         padding: 24px 0
@@ -106,19 +124,4 @@ html, body, body > *:first-child
                     
                     +maw(1000)
                         +ft(13, 13*1.4, 500)
-
-.soc
-    display: inline-flex
-    gap: 16px
-    margin-top: 24px
-
-    a
-        display: block
-        transition: $trs
-        color: $black
-        &:hover, &:active, &:focus
-            transform: scale(1.1) rotate(-15deg)
-
-        & > *
-            color: $black
 

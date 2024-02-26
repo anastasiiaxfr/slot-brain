@@ -1,0 +1,29 @@
+.soc
+    display: inline-flex
+    gap: 16px
+    margin-top: 24px
+
+    a
+        display: block
+        transition: $trs
+        color: $black
+        &:hover, &:active, &:focus
+            transform: scale(1.1) rotate(-15deg)
+
+        & > *
+            color: $black
+
+.btn
+    +flex(inline-flex, center, center)
+    min-width: 260px
+    padding: 18px 24px
+    border-radius: 6px
+    background-color: $main
+    color: $black
+    transition: $trs
+    +ft(22, 22*1.2, 600)
+    &:hover, &:active, &:focus
+        background-color: darken($main, 10%)
+
+    +maw($md)
+        +ft(16, 16*1.2, 600)
