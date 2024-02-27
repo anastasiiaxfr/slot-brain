@@ -6,7 +6,7 @@ import games from "./constant"
 
 export default function Games() {
     return (
-        <section className="section games">
+        <section className="section">
             <div className="container">
                 <h2>Games</h2>
                 <p>We have the most free slots on the internet. Play thousands of games for free.</p>

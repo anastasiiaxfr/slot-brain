@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout"
 
 import Casino from "@/components/Sections/Casino"
+import Bonuses from "@/components/Sections/Bonuses"
 import Games from "@/components/Sections/Games"
 import Blog from "@/components/Sections/Blog"
 import Subscribe from "@/components/Sections/Subscribe"
@@ -11,6 +12,7 @@ export default function Home() {
     <Layout>
       <article className="">
         <Casino />
+        <Bonuses />
         <Games />
         <Blog />
         <Faq />

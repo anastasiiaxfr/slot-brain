@@ -12,7 +12,7 @@ import faqs from "./constant"
 
 export default function Faq() {
     return (
-        <section className={`section ${styles.faq_section}`}>
+        <section className={`section`}>
             <div className="container">
                 <h2>
                     Questions and answers

@@ -1,13 +1,13 @@
 import Link from "next/link"
 import Image from "next/image"
-
+import ReactStars from 'react-stars'
 
 import styles from "./styles.module.sass"
 import casinos from "./constant"
 
 export default function Casino() {
     return (
-        <section className="section casino">
+        <section className="section">
             <div className="container">
                 <h2>
                     Casino Reviews
@@ -28,6 +28,14 @@ export default function Casino() {
                                 </div>
                                 <div className={styles.card_description}>
                                     {i.profit}
+                                </div>
+                                <div className={styles.card_rating}>
+                                    <ReactStars
+                                        count={5}
+                                        size={24}
+                                        value={i.rating}
+                                        edit={false}
+                                        color2={'#EB8425'} />
                                 </div>
                                 <button className={styles.card_btn}>
                                     Learn More

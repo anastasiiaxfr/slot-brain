@@ -10,7 +10,7 @@ import IconEye from "@/assets/icons/eye.svg"
 
 export default function Blog() {
     return (
-        <section className={`section ${styles.blog}`}>
+        <section className={`section`}>
             <div className="container">
                 <h2>Blog</h2>
                 <p>
