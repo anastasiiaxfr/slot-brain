@@ -1,9 +1,7 @@
 html, body 
     display: flex
     //height: 100%
-    min-height: 100%
     flex: 1
-    height: auto
     font-family: $ffText, $ffBack
     scroll-behavior: smooth
 
@@ -11,23 +9,25 @@ html, body
 body
     display: flex
     flex-direction: column
-    
-    &::-webkit-scrollbar
-        +sz(10px, 10px)
-
-    &::-webkit-scrollbar-track
-        background-color: $black
-
-    &::-webkit-scrollbar-thumb
-        background: $main
 
 
 *
     //user-select: none
     box-sizing: border-box
     //transition: $trs
+    scroll-behavior: smooth
+    
     &::selection
         background-color: $main
+
+    &::-webkit-scrollbar
+        +sz(15px, 15px)
+
+    &::-webkit-scrollbar-track
+        background-color: $black
+
+    &::-webkit-scrollbar-thumb
+        background: $main
 
 
 a
