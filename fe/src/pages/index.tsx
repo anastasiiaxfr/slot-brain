@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout"
 
+import Hero from "@/components/Sections/Hero"
 import Casino from "@/components/Sections/Casino"
 import Bonuses from "@/components/Sections/Bonuses"
 import Games from "@/components/Sections/Games"
@@ -44,6 +45,7 @@ export default function Home() {
       />
       <Layout>
         <article className="">
+          <Hero />
           <Casino />
           <Bonuses />
           <Games />
