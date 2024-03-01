@@ -29,17 +29,17 @@ const og = [
 
 const PolicyPage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
             />
             <Layout>
-                <div className="container">
+                <article className="container section">
                     <h1>Privacy Policy</h1>
-                </div>
+                </article>
             </Layout>
-        </div>
+        </>
     )
 }
 

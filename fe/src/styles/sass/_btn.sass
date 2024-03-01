@@ -4,9 +4,12 @@
     margin-top: 24px
 
     a
-        display: block
+        +flex(flex, center, center, nowrap)
+        +sz(40px, 40px)
+        border-radius: 50%
         transition: $trs
         color: $black
+        background-color: $white
         &:hover, &:active, &:focus
             transform: scale(1.1) rotate(-15deg)
 
@@ -36,3 +39,9 @@
             background-color: $white
             border-color: $white
             color: $black
+
+    &-text
+        min-width: 0
+        padding: 10px
+        background: transparent
+        color: $white

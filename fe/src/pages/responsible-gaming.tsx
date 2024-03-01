@@ -30,17 +30,17 @@ const og = [
 
 const ResponsibleGamingPage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
             />
             <Layout>
-                <div className="container">
+                <article className="container section">
                     <h1>ResponsibleGaming</h1>
-                </div>
+                </article>
             </Layout>
-        </div>
+        </>
     )
 }
 

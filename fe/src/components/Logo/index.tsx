@@ -1,10 +1,13 @@
 import Link from "next/link"
-import LogoImg from "@/assets/img/logo.svg"
+import Image from "next/image"
+import LogoImg from "@/assets/img/logo.png"
 
-export default function Logo() {
+import styles from "./styles.module.sass"
+
+export default function Logo({ width = 224, height = 103 }: any) {
     return (
-        <Link href="/" className="logo">
-            <LogoImg width="224" height="103"></LogoImg>
+        <Link href="/" className={styles.logo}>
+            <Image src={LogoImg} width={width} height={height} alt="Slot Brain" />
         </Link>
     )
 }

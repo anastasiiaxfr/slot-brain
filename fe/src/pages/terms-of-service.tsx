@@ -30,18 +30,20 @@ const og = [
 
 const TermsPage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
             />
 
             <Layout>
-                <div className="container">
+                <article className="container section">
                     <h1>Terms of Services</h1>
-                </div>
+                </article>
             </Layout>
-        </div>
+        </>
+
+
     )
 }
 
