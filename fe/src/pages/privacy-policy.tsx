@@ -1,5 +1,8 @@
+import qs from 'qs'
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
+import { marked } from 'marked'
+
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -27,7 +30,8 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-const PolicyPage = () => {
+const PolicyPage = ({ data }: any) => {
+    const info = data.attributes
     return (
         <>
             <Seo
@@ -35,12 +39,37 @@ const PolicyPage = () => {
                 seo={seo}
             />
             <Layout>
-                <article className="container section">
-                    <h1>Privacy Policy</h1>
+                <article className="container page-single">
+                    <h1>{info.title}</h1>
+                    <div dangerouslySetInnerHTML={{
+                        __html: marked(info.contet || ''),
+                    }}
+                    />
                 </article>
             </Layout>
         </>
     )
 }
+
+
+export async function fetchPrivacy(params?: any) {
+    const query = qs.stringify(params)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/privacy-policy?${query}`)
+    const json = await res.json()
+    return json.data
+}
+
+
+export async function getStaticProps() {
+    const data = (await fetchPrivacy({ populate: 'deep' })) || []
+
+    return {
+        props: {
+            data,
+        },
+        revalidate: 60 * 1
+    }
+}
+
 
 export default PolicyPage
