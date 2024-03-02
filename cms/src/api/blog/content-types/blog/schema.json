@@ -45,11 +45,11 @@
       },
       "type": "richtext"
     },
-    "authors": {
+    "author": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToOne",
       "target": "api::author.author",
-      "mappedBy": "blog"
+      "inversedBy": "blogs"
     },
     "blog_category": {
       "type": "relation",

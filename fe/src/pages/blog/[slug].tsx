@@ -39,16 +39,16 @@ export default function BlogSinglePage({ post }: any) {
             <Seo og={og} seo={seo} />
             <Layout>
                 <article className="container page">
-                    <div className={styles.post_img}>
-                        <Image src={post.attributes.img.data.attributes.url} alt={post.attributes.title} height={400} width={800} />
-                    </div>
+                    {post.attributes.img?.data?.attributes?.url ? <div className={styles.post_img}>
+                        <Image src={post.attributes.img?.data?.attributes?.url} alt={post.attributes.title} height={400} width={800} />
+                    </div> : null}
                     <div className={styles.post_info}>
-                        {post.attributes?.authors ?
-                            post.attributes?.authors.data.map((i: any, ind: number) => (
-                                <span key={ind}>{i.attributes.name}</span>
-                            ))
+                        {post.attributes?.author ?
+                            <span>{post.attributes.author
+                                .data.attributes.name}</span>
                             : null}
                         <span>{new Date(post.attributes.publishedAt).toLocaleString()}</span>
+                        <span>{post.attributes.blog_category.data.attributes.name}</span>
 
                     </div>
                     <h1>{post.attributes.title}</h1>

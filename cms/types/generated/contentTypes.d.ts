@@ -936,9 +936,9 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
     job: Attribute.String;
     img: Attribute.Media;
     email: Attribute.Email;
-    blog: Attribute.Relation<
+    blogs: Attribute.Relation<
       'api::author.author',
-      'manyToOne',
+      'oneToMany',
       'api::blog.blog'
     >;
     createdAt: Attribute.DateTime;
@@ -994,9 +994,9 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    authors: Attribute.Relation<
+    author: Attribute.Relation<
       'api::blog.blog',
-      'oneToMany',
+      'manyToOne',
       'api::author.author'
     >;
     blog_category: Attribute.Relation<
