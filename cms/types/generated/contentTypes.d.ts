@@ -1143,6 +1143,38 @@ export interface ApiBonuseBonuse extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    promocode: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    currencies: Attribute.Relation<
+      'api::bonuse.bonuse',
+      'manyToMany',
+      'api::currency.currency'
+    >;
+    countries: Attribute.Relation<
+      'api::bonuse.bonuse',
+      'manyToMany',
+      'api::country.country'
+    >;
+    payment_methods: Attribute.Relation<
+      'api::bonuse.bonuse',
+      'manyToMany',
+      'api::payment-method.payment-method'
+    >;
+    free_spin: Attribute.Relation<
+      'api::bonuse.bonuse',
+      'manyToOne',
+      'api::free-spin.free-spin'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1486,6 +1518,11 @@ export interface ApiCountryCountry extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    bonuses: Attribute.Relation<
+      'api::country.country',
+      'manyToMany',
+      'api::bonuse.bonuse'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1538,6 +1575,11 @@ export interface ApiCurrencyCurrency extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    bonuses: Attribute.Relation<
+      'api::currency.currency',
+      'manyToMany',
+      'api::bonuse.bonuse'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1625,6 +1667,11 @@ export interface ApiFreeSpinFreeSpin extends Schema.CollectionType {
   };
   attributes: {
     value: Attribute.String;
+    bonuses: Attribute.Relation<
+      'api::free-spin.free-spin',
+      'oneToMany',
+      'api::bonuse.bonuse'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1889,6 +1936,11 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    bonuses: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'manyToMany',
+      'api::bonuse.bonuse'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

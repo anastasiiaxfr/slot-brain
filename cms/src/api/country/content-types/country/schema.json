@@ -30,6 +30,12 @@
         }
       },
       "type": "string"
+    },
+    "bonuses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::bonuse.bonuse",
+      "mappedBy": "countries"
     }
   }
 }

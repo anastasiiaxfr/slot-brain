@@ -13,6 +13,12 @@
   "attributes": {
     "value": {
       "type": "string"
+    },
+    "bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::bonuse.bonuse",
+      "mappedBy": "free_spin"
     }
   }
 }

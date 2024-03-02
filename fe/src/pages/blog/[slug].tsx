@@ -48,7 +48,7 @@ export default function BlogSinglePage({ post }: any) {
                                 .data.attributes.name}</span>
                             : null}
                         <span>{new Date(post.attributes.publishedAt).toLocaleString()}</span>
-                        <span>{post.attributes.blog_category.data.attributes.name}</span>
+                        <span className="chip">{post.attributes.blog_category.data.attributes.name}</span>
 
                     </div>
                     <h1>{post.attributes.title}</h1>
