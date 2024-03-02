@@ -1584,6 +1584,12 @@ export interface ApiFaqFaq extends Schema.SingleType {
           localized: true;
         };
       }>;
+    SEO: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1929,6 +1935,12 @@ export interface ApiPrivacyPolicyPrivacyPolicy extends Schema.SingleType {
           localized: true;
         };
       }>;
+    SEO: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1960,6 +1972,7 @@ export interface ApiResponsibleGamingResponsibleGaming
     singularName: 'responsible-gaming';
     pluralName: 'responsible-gamings';
     displayName: 'Responsible Gaming';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1977,6 +1990,12 @@ export interface ApiResponsibleGamingResponsibleGaming
         };
       }>;
     content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    SEO: Attribute.Component<'shared.seo'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -2012,6 +2031,7 @@ export interface ApiTermsOfServiceTermsOfService extends Schema.SingleType {
     singularName: 'terms-of-service';
     pluralName: 'terms-of-services';
     displayName: 'Terms of Service';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2029,6 +2049,12 @@ export interface ApiTermsOfServiceTermsOfService extends Schema.SingleType {
         };
       }>;
     content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    SEO: Attribute.Component<'shared.seo'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

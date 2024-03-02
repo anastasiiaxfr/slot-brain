@@ -1,5 +1,7 @@
+import qs from 'qs'
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
+import { marked } from 'marked'
 
 
 const seo = {
@@ -28,7 +30,9 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-const ResponsibleGamingPage = () => {
+const ResponsibleGamingPage = ({ data }: any) => {
+    const info = data.attributes
+
     return (
         <>
             <Seo
@@ -36,12 +40,35 @@ const ResponsibleGamingPage = () => {
                 seo={seo}
             />
             <Layout>
-                <article className="container section">
-                    <h1>ResponsibleGaming</h1>
+                <article className="container page-single">
+                    <h1>{info.title}</h1>
+                    <div dangerouslySetInnerHTML={{
+                        __html: marked(info.content || ''),
+                    }}
+                    />
                 </article>
             </Layout>
         </>
     )
+}
+
+
+export async function fetchGaming(params?: any) {
+    const query = qs.stringify(params)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/responsible-gaming?${query}`)
+    const json = await res.json()
+    return json.data
+}
+
+export async function getStaticProps() {
+    const data = (await fetchGaming({ populate: 'deep' })) || []
+
+    return {
+        props: {
+            data,
+        },
+        revalidate: 60 * 1
+    }
 }
 
 export default ResponsibleGamingPage

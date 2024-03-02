@@ -51,14 +51,12 @@ const PolicyPage = ({ data }: any) => {
     )
 }
 
-
 export async function fetchPrivacy(params?: any) {
     const query = qs.stringify(params)
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/privacy-policy?${query}`)
     const json = await res.json()
     return json.data
 }
-
 
 export async function getStaticProps() {
     const data = (await fetchPrivacy({ populate: 'deep' })) || []
@@ -70,6 +68,5 @@ export async function getStaticProps() {
         revalidate: 60 * 1
     }
 }
-
 
 export default PolicyPage
