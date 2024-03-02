@@ -1,6 +1,7 @@
+import qs from 'qs'
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
-
+import Link from "next/link"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -30,18 +31,19 @@ const og = [
 
 const NotFoundPage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
             />
             <Layout>
-                <div className="container">
-                    <h1>404</h1>
+                <div className="container page-error">
                     <p>Nothing foud</p>
+                    <h1>404</h1>
+                    <Link href="/" className={`btn btn-trs`}>Go home</Link>
                 </div>
             </Layout>
-        </div>
+        </>
     )
 }
 

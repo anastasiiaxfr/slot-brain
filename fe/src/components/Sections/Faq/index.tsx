@@ -23,7 +23,7 @@ export default function Faq() {
 
 
                         <dl className={styles.faq}>
-                            {faqs.map((faq, ind) => (
+                            {faqs.map((faq: any, ind: number) => (
                                 <Disclosure as="div" key={ind} className="">
                                     {({ open }) => (
                                         <>
