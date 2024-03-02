@@ -30,7 +30,7 @@ const og = [
 
 const BlogSinglePage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
@@ -38,10 +38,10 @@ const BlogSinglePage = () => {
 
             <Layout>
                 <div className="container">
-                    <h1>Blog</h1>
+                    <h1>Blog Single</h1>
                 </div>
             </Layout>
-        </div>
+        </>
     )
 }
 

@@ -30,18 +30,18 @@ const og = [
 
 const BlogParentPage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
             />
 
             <Layout>
-                <div className="container">
+                <article className="container page-single">
                     <h1>Blog</h1>
-                </div>
+                </article>
             </Layout>
-        </div>
+        </>
     )
 }
 

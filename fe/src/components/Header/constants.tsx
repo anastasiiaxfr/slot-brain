@@ -9,27 +9,27 @@ const nav = [
     },
     {
         title: "Casino Reviews",
-        url: "/"
+        url: "/casinos"
     },
     {
         title: "Bonuses",
-        url: "/"
+        url: "/bonuses"
     },
     {
         title: "Games",
-        url: "/"
+        url: "/games"
     },
     {
         title: "Blog",
-        url: "/"
+        url: "/blog"
     },
     {
         title: "Questions",
-        url: "/"
+        url: "/faq"
     },
     {
         title: "Contact",
-        url: "/"
+        url: "/contact"
     },
 
 ]

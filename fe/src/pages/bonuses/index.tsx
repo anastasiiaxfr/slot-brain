@@ -30,7 +30,7 @@ const og = [
 
 const BonusesParentPage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
@@ -41,7 +41,7 @@ const BonusesParentPage = () => {
                     <h1>Bonuses</h1>
                 </div>
             </Layout>
-        </div>
+        </>
     )
 }
 

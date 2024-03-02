@@ -30,7 +30,7 @@ const og = [
 
 const BonusesSinglePage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
@@ -38,10 +38,10 @@ const BonusesSinglePage = () => {
 
             <Layout>
                 <div className="container">
-                    <h1>Bonuses</h1>
+                    <h1>Bonuses Single</h1>
                 </div>
             </Layout>
-        </div>
+        </>
     )
 }
 

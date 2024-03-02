@@ -30,7 +30,7 @@ const og = [
 
 const GamesSinglePage = () => {
     return (
-        <div>
+        <>
             <Seo
                 og={og}
                 seo={seo}
@@ -38,10 +38,10 @@ const GamesSinglePage = () => {
 
             <Layout>
                 <div className="container">
-                    <h1>Games</h1>
+                    <h1>Games Single</h1>
                 </div>
             </Layout>
-        </div>
+        </>
     )
 }
 
