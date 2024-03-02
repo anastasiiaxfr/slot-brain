@@ -1233,6 +1233,11 @@ export interface ApiBonuseTypeBonuseType extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    casinos: Attribute.Relation<
+      'api::bonuse-type.bonuse-type',
+      'oneToMany',
+      'api::casino.casino'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1297,11 +1302,6 @@ export interface ApiCasinoCasino extends Schema.CollectionType {
       'oneToOne',
       'api::casino-type.casino-type'
     >;
-    casino_provider: Attribute.Relation<
-      'api::casino.casino',
-      'oneToOne',
-      'api::casino-provider.casino-provider'
-    >;
     SEO: Attribute.Component<'shared.seo', true> &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1310,6 +1310,70 @@ export interface ApiCasinoCasino extends Schema.CollectionType {
       }>;
     slug: Attribute.UID<'api::casino.casino', 'title'> &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    game_types: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::game-type.game-type'
+    >;
+    casino_providers: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::casino-provider.casino-provider'
+    >;
+    bonuse_type: Attribute.Relation<
+      'api::casino.casino',
+      'manyToOne',
+      'api::bonuse-type.bonuse-type'
+    >;
+    payment_methods: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::payment-method.payment-method'
+    >;
+    licence: Attribute.Relation<
+      'api::casino.casino',
+      'manyToOne',
+      'api::licence.licence'
+    >;
+    languages: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::language.language'
+    >;
+    countries: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::country.country'
+    >;
+    currencies: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::currency.currency'
+    >;
+    thumbnail: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    profit: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    rating: Attribute.Decimal &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1361,6 +1425,11 @@ export interface ApiCasinoProviderCasinoProvider extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    casinos: Attribute.Relation<
+      'api::casino-provider.casino-provider',
+      'manyToMany',
+      'api::casino.casino'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1535,6 +1604,11 @@ export interface ApiCountryCountry extends Schema.CollectionType {
       'manyToMany',
       'api::bonuse.bonuse'
     >;
+    casinos: Attribute.Relation<
+      'api::country.country',
+      'manyToMany',
+      'api::casino.casino'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1591,6 +1665,11 @@ export interface ApiCurrencyCurrency extends Schema.CollectionType {
       'api::currency.currency',
       'manyToMany',
       'api::bonuse.bonuse'
+    >;
+    casinos: Attribute.Relation<
+      'api::currency.currency',
+      'manyToMany',
+      'api::casino.casino'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1844,6 +1923,11 @@ export interface ApiGameTypeGameType extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    casinos: Attribute.Relation<
+      'api::game-type.game-type',
+      'manyToMany',
+      'api::casino.casino'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1896,6 +1980,11 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    casinos: Attribute.Relation<
+      'api::language.language',
+      'manyToMany',
+      'api::casino.casino'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1915,6 +2004,57 @@ export interface ApiLanguageLanguage extends Schema.CollectionType {
       'api::language.language',
       'oneToMany',
       'api::language.language'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiLicenceLicence extends Schema.CollectionType {
+  collectionName: 'licences';
+  info: {
+    singularName: 'licence';
+    pluralName: 'licences';
+    displayName: 'Licence';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    casinos: Attribute.Relation<
+      'api::licence.licence',
+      'oneToMany',
+      'api::casino.casino'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::licence.licence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::licence.licence',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::licence.licence',
+      'oneToMany',
+      'api::licence.licence'
     >;
     locale: Attribute.String;
   };
@@ -1952,6 +2092,11 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
       'api::payment-method.payment-method',
       'manyToMany',
       'api::bonuse.bonuse'
+    >;
+    casinos: Attribute.Relation<
+      'api::payment-method.payment-method',
+      'manyToMany',
+      'api::casino.casino'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -2193,6 +2338,7 @@ declare module '@strapi/types' {
       'api::game-provider.game-provider': ApiGameProviderGameProvider;
       'api::game-type.game-type': ApiGameTypeGameType;
       'api::language.language': ApiLanguageLanguage;
+      'api::licence.licence': ApiLicenceLicence;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'api::responsible-gaming.responsible-gaming': ApiResponsibleGamingResponsibleGaming;

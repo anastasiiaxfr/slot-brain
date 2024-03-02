@@ -36,6 +36,12 @@
       "relation": "manyToMany",
       "target": "api::bonuse.bonuse",
       "mappedBy": "countries"
+    },
+    "casinos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino.casino",
+      "mappedBy": "countries"
     }
   }
 }

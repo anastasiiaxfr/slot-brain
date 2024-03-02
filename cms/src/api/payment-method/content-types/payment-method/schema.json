@@ -36,6 +36,12 @@
       "relation": "manyToMany",
       "target": "api::bonuse.bonuse",
       "mappedBy": "payment_methods"
+    },
+    "casinos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino.casino",
+      "mappedBy": "payment_methods"
     }
   }
 }

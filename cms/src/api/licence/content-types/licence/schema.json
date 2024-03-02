@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "languages",
+  "collectionName": "licences",
   "info": {
-    "singularName": "language",
-    "pluralName": "languages",
-    "displayName": "Language"
+    "singularName": "licence",
+    "pluralName": "licences",
+    "displayName": "Licence"
   },
   "options": {
     "draftAndPublish": true
@@ -23,19 +23,11 @@
       },
       "type": "string"
     },
-    "code": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "casinos": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::casino.casino",
-      "mappedBy": "languages"
+      "mappedBy": "licence"
     }
   }
 }

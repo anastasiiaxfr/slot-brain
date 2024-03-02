@@ -1,3 +1,7 @@
+import qs from 'qs'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { fetchCasinos, shortPopulateParams } from './api'
+import Link from "next/link"
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
 
@@ -28,7 +32,7 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-const CasinosParentPage = () => {
+const CasinosParentPage = ({ casinos }: any) => {
     return (
         <>
             <Seo
@@ -39,10 +43,43 @@ const CasinosParentPage = () => {
             <Layout>
                 <article className="container page">
                     <h1>Casinos</h1>
+                    <ul>
+                        {casinos.data.map((i: any, ind: number) => (
+                            <li key={ind}><Link href={`/casinos/${i.attributes.slug}`}>
+                                {i.attributes.title}
+                            </Link></li>
+                        ))}
+                    </ul>
                 </article>
             </Layout>
         </>
     )
+}
+
+export async function getStaticProps() {
+    const queryClient = new QueryClient()
+
+    const pgQuery = qs.stringify(
+        {
+            ...shortPopulateParams,
+            pagination: {
+                page: 1,
+                pageSize: 5,
+            },
+        },
+        {
+            encodeValuesOnly: true,
+        },
+    )
+    const casinos: any = await fetchCasinos({ queryKey: ['casinos', pgQuery] })
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+            casinos,
+        },
+        revalidate: 60 * 1,
+    }
 }
 
 export default CasinosParentPage

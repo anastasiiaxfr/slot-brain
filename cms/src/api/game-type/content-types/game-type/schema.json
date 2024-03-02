@@ -22,6 +22,12 @@
         }
       },
       "type": "string"
+    },
+    "casinos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino.casino",
+      "mappedBy": "game_types"
     }
   }
 }

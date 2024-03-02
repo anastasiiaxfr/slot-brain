@@ -50,11 +50,6 @@
       "relation": "oneToOne",
       "target": "api::casino-type.casino-type"
     },
-    "casino_provider": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::casino-provider.casino-provider"
-    },
     "SEO": {
       "type": "component",
       "repeatable": true,
@@ -74,6 +69,91 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "game_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::game-type.game-type",
+      "inversedBy": "casinos"
+    },
+    "casino_providers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino-provider.casino-provider",
+      "inversedBy": "casinos"
+    },
+    "bonuse_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::bonuse-type.bonuse-type",
+      "inversedBy": "casinos"
+    },
+    "payment_methods": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "casinos"
+    },
+    "licence": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::licence.licence",
+      "inversedBy": "casinos"
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "inversedBy": "casinos"
+    },
+    "countries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::country.country",
+      "inversedBy": "casinos"
+    },
+    "currencies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::currency.currency",
+      "inversedBy": "casinos"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "profit": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "url": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "rating": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "decimal"
     }
   }
 }
