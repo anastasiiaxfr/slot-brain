@@ -1845,6 +1845,12 @@ export interface ApiGameGame extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    video: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

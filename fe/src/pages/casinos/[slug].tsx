@@ -34,8 +34,9 @@ const og = [
 ]
 
 export default function CasinosSinglePage({ casino }: any) {
-    console.log(casino.attributes);
+    //console.log(casino.attributes);
     const data = casino.attributes;
+
     return (
         <>
             <Seo
@@ -47,10 +48,12 @@ export default function CasinosSinglePage({ casino }: any) {
                 <article className="container page">
                     <h1>{data.title}</h1>
 
-                    <div className={styles.casino_info}>
-                        {data.thumbnail.data?.attributes?.url ? <div className={styles.casino_logo}>
-                            <Image src={data.thumbnail.data.attributes.url} alt={data.title} height={150} width={300} />
-                        </div> : null}
+                    {data.thumbnail.data?.attributes?.url ? <div className={styles.casino_logo}>
+                        <Image src={data.thumbnail.data.attributes.url} alt={data.title} height={150} width={300} />
+                    </div> : null}
+
+                    <div className={styles.casino_data}>
+
                         <table className="table">
 
                             <tr>
