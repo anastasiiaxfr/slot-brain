@@ -37,9 +37,9 @@ const CasinosParentPage = () => {
             />
 
             <Layout>
-                <div className="container">
+                <article className="container page">
                     <h1>Casinos</h1>
-                </div>
+                </article>
             </Layout>
         </>
     )

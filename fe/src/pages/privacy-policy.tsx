@@ -39,7 +39,7 @@ const PolicyPage = ({ data }: any) => {
                 seo={seo}
             />
             <Layout>
-                <article className="container page-single">
+                <article className="container page">
                     <h1>{info.title}</h1>
                     <div dangerouslySetInnerHTML={{
                         __html: marked(info.content || ''),

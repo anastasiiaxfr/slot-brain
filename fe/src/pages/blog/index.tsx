@@ -43,12 +43,12 @@ const BlogParentPage = ({ blogs }: any) => {
             />
 
             <Layout>
-                <article className="container page-single">
+                <article className="container page">
                     <h1>Blog</h1>
 
                     <ul>
                         {blogs.data.map((i: any, ind: number) => (
-                            <li key={ind}><Link href={`/blogs/${i.attributes.slug}`}>
+                            <li key={ind}><Link href={`/blog/${i.attributes.slug}`}>
                                 {i.attributes.title}
                             </Link></li>
                         ))}
@@ -69,7 +69,7 @@ export async function getStaticProps() {
             ...shortBlogsPopulateParams,
             pagination: {
                 page: 1,
-                pageSize: 18,
+                pageSize: 5,
             },
         },
         {

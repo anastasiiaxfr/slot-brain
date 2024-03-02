@@ -1,0 +1,20 @@
+@import 'src/styles/sass/vars.sass'
+
+.post
+    &_img
+        position: relative
+        padding-top: 50%
+        border-radius: var(--brsXs)
+        overflow: hidden
+
+        & > *
+            +ps(absolute, (t, 0), (l, 0))
+            +sz(100%, 100%)
+
+    &_info
+        +flex(flex, center, space-between, wrap)
+        gap: var(--gap)
+        margin-top: var(--gap)
+
+    &_content
+        margin-bottom: var(--gapLg)

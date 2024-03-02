@@ -37,9 +37,9 @@ const BonusesSinglePage = () => {
             />
 
             <Layout>
-                <div className="container">
+                <article className="container page">
                     <h1>Bonuses Single</h1>
-                </div>
+                </article>
             </Layout>
         </>
     )

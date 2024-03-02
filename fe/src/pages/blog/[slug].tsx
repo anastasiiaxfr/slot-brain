@@ -1,6 +1,10 @@
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
+import { marked } from 'marked'
+import Image from "next/image"
+import Link from "next/link"
 
+import styles from "./styles.module.sass"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -28,21 +32,69 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-const BlogSinglePage = () => {
+export default function BlogSinglePage({ post }: any) {
+    console.log(post.attributes)
     return (
         <>
-            <Seo
-                og={og}
-                seo={seo}
-            />
-
+            <Seo og={og} seo={seo} />
             <Layout>
-                <div className="container">
-                    <h1>Blog Single</h1>
-                </div>
+                <article className="container page">
+                    <div className={styles.post_img}>
+                        <Image src={post.attributes.img.data.attributes.url} alt={post.attributes.title} height={400} width={800} />
+                    </div>
+                    <div className={styles.post_info}>
+                        {post.attributes?.authors ?
+                            post.attributes?.authors.data.map((i: any, ind: number) => (
+                                <span key={ind}>{i.attributes.name}</span>
+                            ))
+                            : null}
+                        <span>{new Date(post.attributes.publishedAt).toLocaleString()}</span>
+
+                    </div>
+                    <h1>{post.attributes.title}</h1>
+                    <div dangerouslySetInnerHTML={{
+                        __html: marked(post.attributes.content || ''),
+                    }} className={styles.post_content}
+                    />
+                    <Link href="/blog">Go Back</Link>
+                </article>
             </Layout>
         </>
-    )
+    );
 }
 
-export default BlogSinglePage
+export async function getStaticPaths() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
+    const data = await res.json();
+    const paths = data.data.map((post: any) => ({
+        params: { slug: post.attributes.slug },
+    }));
+
+    return {
+        paths,
+        fallback: false,
+    };
+}
+
+export async function getStaticProps({ params }: any) {
+    const { slug } = params;
+
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs?filters[slug][$eq]=${slug}&populate=*`
+    );
+
+    if (!res.ok) {
+        return {
+            notFound: true,
+        };
+    }
+
+    const data = await res.json();
+    const post = data.data[0];
+
+    return {
+        props: {
+            post,
+        },
+    };
+}

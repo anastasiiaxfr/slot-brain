@@ -37,9 +37,9 @@ const BonusesParentPage = () => {
             />
 
             <Layout>
-                <div className="container">
+                <article className="container page">
                     <h1>Bonuses</h1>
-                </div>
+                </article>
             </Layout>
         </>
     )
