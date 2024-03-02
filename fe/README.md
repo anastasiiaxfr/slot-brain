@@ -36,3 +36,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+---
+
+- (blog parent)[https://idealecasinos-production.up.railway.app/pages/blog.php]
+- (blog single)[https://idealecasinos-production.up.railway.app/pages/blog-single.php]
+- (bonus single)[https://idealecasinos-production.up.railway.app/pages/payment-system-sidebar.php]
+- (bonus parent)[]
+- (casino parent)[https://idealecasinos-production.up.railway.app/pages/provider-landing.php]
+- (casino single)[https://idealecasinos-production.up.railway.app/pages/game-type-landing.php]
+- (game single)[https://idealecasinos-production.up.railway.app/pages/game-review.php]
+- (game single 2)[https://idealecasinos-production.up.railway.app/pages/landing-page.php]
