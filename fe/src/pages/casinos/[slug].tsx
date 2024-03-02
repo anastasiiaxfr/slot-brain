@@ -95,14 +95,14 @@ export default function CasinosSinglePage({ casino }: any) {
                                 <th>Currencies:</th>
                                 <td>{data.currencies.data.map((i: any, ind: number) => (<span key="ind">{i.attributes.code}</span>))}</td>
                             </tr> : null}
-                            <tr>
+                            {data.bonuse_type ? <tr>
                                 <th>Bonuses: </th>
                                 <td>{data.bonuse_type.data.attributes.name}</td>
-                            </tr>
-                            <tr>
+                            </tr> : null}
+                            {data.game_types.length > 0 ? <tr>
                                 <th>Games: </th>
-                                <td></td>
-                            </tr>
+                                <td>{data.game_types.data.map((i: any, ind: number) => (<span key={ind}>{i.name}</span>))}</td>
+                            </tr> : null}
                         </table>
                     </div>
 

@@ -35,6 +35,7 @@ const og = [
 
 export default function BonusesSingelPage({ bonus }: any) {
     console.log(bonus.attributes)
+    const data = bonus.attributes
 
     return (
         <>
@@ -45,55 +46,55 @@ export default function BonusesSingelPage({ bonus }: any) {
 
             <Layout>
                 <article className="container page">
-                    <h1>{bonus.attributes.title}</h1>
+                    <h1>{data.title}</h1>
 
                     <div className={styles.bonus}>
-                        {bonus.attributes.img?.data?.attributes?.url ? <div className={styles.bonus_logo}>
-                            <Image src={bonus.attributes.img?.data?.attributes?.url} alt={bonus.attributes.title} height={150} width={300} />
+                        {data.img?.data?.attributes?.url ? <div className={styles.bonus_logo}>
+                            <Image src={data.img?.data?.attributes?.url} alt={data.title} height={150} width={300} />
                         </div> : null}
-                        <table>
+                        <table className="table">
                             <tr>
-                                <th>
-                                    Offer:
-                                </th>
-                                <td>
-                                    {bonus.attributes.description}
-                                </td>
+                                <th> Offer: </th>
+                                <td> {data.description} </td>
                             </tr>
                             <tr>
-                                <th>
-                                    Type:
-                                </th>
-                                <td>
-                                    {bonus.attributes.bonuse_type.data.attributes.name}
-                                </td>
+                                <th> Type: </th>
+                                <td> {data.bonuse_type.data.attributes.name} </td>
                             </tr>
                             <tr>
-                                <th>
-                                    Promo Code:
-                                </th>
-                                <td>
-                                    {bonus.attributes.promocode}
-                                </td>
+                                <th> Promo Code: </th>
+                                <td> {data.promocode} </td>
                             </tr>
                             <tr>
-                                <th>
-                                    Rating:
-                                </th>
-                                <td>
-                                    {bonus.attributes.rating}
-                                </td>
+                                <th> Rating: </th>
+                                <td> {data.rating} </td>
                             </tr>
+                            {data.payment_methods ? <tr>
+                                <th> Payment methods: </th>
+                                <td>{data.payment_methods.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.code}</span>))}</td>
+                            </tr> : null}
+                            {data.currencies ? <tr>
+                                <th>Currencies: </th>
+                                <td>{data.currencies.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.code}</span>))}</td>
+                            </tr> : null}
+                            {data.countries ? <tr>
+                                <th>GEO: </th>
+                                <td>{data.countries.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.code}</span>))}</td>
+                            </tr> : null}
+                            {data.free_spin ? <tr>
+                                <th>Free Spins: </th>
+                                <td>{data.free_spin.data.attributes.value}</td>
+                            </tr> : null}
 
                         </table>
                     </div>
 
-                    {bonus.attributes.thumbnail?.data?.attributes?.url ? <div className={styles.bonus_thumbnail}>
-                        <Image src={bonus.attributes.thumbnail?.data?.attributes?.url} alt={bonus.attributes.title} height={400} width={800} />
+                    {data.thumbnail?.data?.attributes?.url ? <div className={styles.bonus_img}>
+                        <Image src={data.thumbnail?.data?.attributes?.url} alt={data.title} height={400} width={800} />
                     </div> : null}
 
                     <div dangerouslySetInnerHTML={{
-                        __html: marked(bonus.attributes.content || ''),
+                        __html: marked(data.content || ''),
                     }} className={styles.bonus_content}
                     />
 

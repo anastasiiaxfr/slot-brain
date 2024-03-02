@@ -1235,7 +1235,7 @@ export interface ApiBonuseTypeBonuseType extends Schema.CollectionType {
       }>;
     casinos: Attribute.Relation<
       'api::bonuse-type.bonuse-type',
-      'oneToMany',
+      'manyToMany',
       'api::casino.casino'
     >;
     createdAt: Attribute.DateTime;
@@ -1325,9 +1325,9 @@ export interface ApiCasinoCasino extends Schema.CollectionType {
       'manyToMany',
       'api::casino-provider.casino-provider'
     >;
-    bonuse_type: Attribute.Relation<
+    bonuse_types: Attribute.Relation<
       'api::casino.casino',
-      'manyToOne',
+      'manyToMany',
       'api::bonuse-type.bonuse-type'
     >;
     payment_methods: Attribute.Relation<
@@ -1834,6 +1834,12 @@ export interface ApiGameGame extends Schema.CollectionType {
       }>;
     slug: Attribute.UID<'api::game.game', 'title'> &
       Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    url: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
