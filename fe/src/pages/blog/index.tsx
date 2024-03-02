@@ -1,5 +1,10 @@
+import qs from 'qs'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { fetchBlogs, shortBlogsPopulateParams } from './api'
+
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
+import Link from "next/link"
 
 
 const seo = {
@@ -28,7 +33,8 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-const BlogParentPage = () => {
+const BlogParentPage = ({ blogs }: any) => {
+
     return (
         <>
             <Seo
@@ -39,10 +45,46 @@ const BlogParentPage = () => {
             <Layout>
                 <article className="container page-single">
                     <h1>Blog</h1>
+
+                    <ul>
+                        {blogs.data.map((i: any, ind: number) => (
+                            <li key={ind}><Link href={`/blogs/${i.attributes.slug}`}>
+                                {i.attributes.title}
+                            </Link></li>
+                        ))}
+                    </ul>
                 </article>
             </Layout>
         </>
     )
+}
+
+
+
+export async function getStaticProps() {
+    const queryClient = new QueryClient()
+
+    const blogsQuery = qs.stringify(
+        {
+            ...shortBlogsPopulateParams,
+            pagination: {
+                page: 1,
+                pageSize: 18,
+            },
+        },
+        {
+            encodeValuesOnly: true,
+        },
+    )
+    const blogs: any = await fetchBlogs({ queryKey: ['blogs', blogsQuery] })
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+            blogs,
+        },
+        revalidate: 60 * 1,
+    }
 }
 
 export default BlogParentPage
