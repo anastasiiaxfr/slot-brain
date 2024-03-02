@@ -1181,6 +1181,12 @@ export interface ApiBonuseBonuse extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    thumbnail: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

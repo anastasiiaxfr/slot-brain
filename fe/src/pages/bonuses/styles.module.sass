@@ -1,0 +1,21 @@
+@import 'src/styles/sass/vars.sass'
+
+.bonus
+    +flex(flex, center, flex-start, wrap)
+    gap: var(--gap)
+    box-shadow: $bxsd
+
+    &_logo
+        display: inline-flex
+        padding: 10px
+        border-radius: var(--brsXs)
+        background-color: $black
+
+    table
+        text-align: left
+        td
+            padding: 5px 15px
+
+    &_content
+        margin-top: var(--gapLg)
+        margin-bottom: var(--gapLg)
