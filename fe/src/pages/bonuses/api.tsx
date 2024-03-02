@@ -1,10 +1,10 @@
 import qs from 'qs'
 
-export const defaultBlogsParams = {
+export const defaultBonusesParams = {
     populate: 'deep',
 }
 
-export const shortBlogsPopulateParams = {
+export const shortBonusesPopulateParams = {
     populate: {
         cover: {
             populate: 'deep',
@@ -15,7 +15,7 @@ export const shortBlogsPopulateParams = {
     },
 }
 
-export async function fetchBlogs(params?: any) {
+export async function fetchBonuses(params?: any) {
     const { queryKey, pageParam } = params
     console.log('queryKey:', queryKey); // Add this line for debugging
 
@@ -29,15 +29,15 @@ export async function fetchBlogs(params?: any) {
         queryParams += '&' + p
     }
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/blogs`,
+        `${process.env.NEXT_PUBLIC_API_URL}/bonuses`,
     )
     const parsed = await res.json()
     return parsed
 }
 
-export async function fetchBlog(params?: any) {
+export async function fetchBonuse(params?: any) {
     const query = qs.stringify(params)
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs?${query}`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bonuses?${query}`)
     const json = await res.json()
     return json.data
 }

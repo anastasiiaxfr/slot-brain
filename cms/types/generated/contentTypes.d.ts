@@ -1175,6 +1175,12 @@ export interface ApiBonuseBonuse extends Schema.CollectionType {
       'manyToOne',
       'api::free-spin.free-spin'
     >;
+    rating: Attribute.Decimal &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
