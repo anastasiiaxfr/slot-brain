@@ -1,72 +1,21 @@
 @import 'src/styles/sass/vars.sass'
+@import './Slider/styles.module.sass'
+
 
 .hero
-    position: relative
-    z-index: 1
-    max-height: 670px
-    margin-top: 0
-    color: $white
-
-    &_img
-        +ps(absolute, (t, 0), (l, 0))
-        +sz(100%, 100%)
-        object-fit: cover
-        z-index: -1
-
+    margin-bottom: 0
     &_slide
-        position: relative
-        +flex(flex, center, flex-start, nowrap)
-        max-height: 670px
-        height: 550px
-        flex: 1
-        padding: 80px 80px
-
-        &::after
-            content: ''
-            +ps(absolute, (t, 0), (l, 0))
-            z-index: -1
-            display: block
-            +sz(100%, 100%)
-            background-color: rgba($black, 0.25)
+        height: auto
+        text-align: center
+        justify-content: center
 
     &_title
-        margin-bottom: var(--gap)
-        +ft(60, 60*1.2, 400)
+        +ft(100, 100, 900)
 
     &_description
-        display: block
-        margin-bottom: var(--gapMd)
-        +ft(35, 35*1.2, 400)
+        &, b
+            +ft(18, 18*1.4, 500)
 
-        b   
-            display: block
-            margin-bottom: var(--gapXs)
-            +ft(43, 43*1.2, 500)
-
-    &_cta
-        display: flex
-        flex-wrap: wrap
-        row-gap: var(--gap)
-        column-gap: var(--gapMd)
-    
-    &_btn, &_btn_bd
-        min-width: 200px
-        padding: 16px 24px
-        +ft(22, 22*1.2, 600)
-
-    +maw($md)
-        &_slide, &_cta
-            justify-content: center
-            text-align: center
-            height: auto
-
-    +maw(580)
-        &_slide
-            padding-left: 2em
-            padding-right: 2em
-
+    +maw($sm)
         &_title
-            +ft(24, 24, 700)
-
-        &_btn, &_btn_bd
-            +ft(16, 16*1.2, 600)
+            font-size: 4em

@@ -40,7 +40,7 @@ const NotFoundPage = () => {
                 <div className="container page-error">
                     <p>Nothing foud</p>
                     <h1>404</h1>
-                    <Link href="/" className={`btn btn-trs`}>Go home</Link>
+                    <Link href="/" className={`btn btn-trs`}>Go to home</Link>
                 </div>
             </Layout>
         </>

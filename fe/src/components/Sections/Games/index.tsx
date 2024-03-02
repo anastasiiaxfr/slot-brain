@@ -1,7 +1,6 @@
-import Link from "next/link"
-import Image from "next/image"
-import styles from "./styles.module.sass"
+import Card from "./Card"
 import games from "./constant"
+import styles from "./styles.module.sass"
 
 
 export default function Games() {
@@ -13,24 +12,9 @@ export default function Games() {
 
                 <div className={styles.cards}>
                     {games.map((i: any, ind: number) => (
-                        <Link className={styles.card} href={i.url} key={ind}>
-                            <div className={styles.card_wrap}>
-                                <Image src={i.img} alt={i.title} />
-                            </div>
-                            <div className={styles.card_content}>
-                                <div className={styles.card_title}>
-                                    {i.title}
-                                </div>
-                                <button className={styles.card_btn}>
-                                    Play for free
-                                </button>
-                            </div>
-                        </Link>
+                        <Card card={i} key={ind} />
                     ))}
-
-
                 </div>
-
 
             </div>
         </section>

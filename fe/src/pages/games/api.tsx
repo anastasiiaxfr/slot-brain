@@ -29,7 +29,7 @@ export async function fetchGames(params?: any) {
         queryParams += '&' + p
     }
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/games`,
+        `${process.env.NEXT_PUBLIC_API_URL}/games?populate=*`,
     )
     const parsed = await res.json()
     return parsed

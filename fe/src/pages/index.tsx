@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout"
 
-import Hero from "@/components/Sections/Hero"
+import Hero from "@/components/Sections/Hero/Slider"
 import Casino from "@/components/Sections/Casino"
 import Bonuses from "@/components/Sections/Bonuses"
 import Games from "@/components/Sections/Games"

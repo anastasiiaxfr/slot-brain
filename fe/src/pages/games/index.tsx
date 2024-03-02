@@ -1,10 +1,14 @@
 import qs from 'qs'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { fetchGames, shortPopulateParams } from './api'
-import Link from "next/link"
 import Layout from "@/components/Layout"
+import Hero from "@/components/Sections/Hero"
 import Seo from "@/components/SEO"
+import HeroImg from "@/assets/img/hero/slide1.jpg"
+import Card from "@/components/Sections/Games/Card"
+import Select from 'react-select'
 
+import styles from "./styles.module.sass"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -32,6 +36,33 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
+const hero = {
+    title: "Games",
+    descritption: "Description",
+    img: HeroImg
+}
+
+const filter_by_provider = [
+    { value: 'provider1', label: 'Provider1' },
+    { value: 'provider2', label: 'Provider2' },
+    { value: 'provider3', label: 'Provider3' },
+    { value: 'provider4', label: 'Provider4' },
+    { value: 'provider5', label: 'Provider5' },
+]
+
+const filter_by_type = [
+    { value: 'type1', label: 'type1' },
+    { value: 'type2', label: 'type2' },
+    { value: 'type3', label: 'type3' },
+    { value: 'type4', label: 'type4' },
+    { value: 'type5', label: 'type5' },
+]
+
+const order = [
+    { value: 'asc', label: 'ASC' },
+    { value: 'desc', label: 'DESC' },
+]
+
 const GamesParentPage = ({ games }: any) => {
     return (
         <>
@@ -41,16 +72,31 @@ const GamesParentPage = ({ games }: any) => {
             />
 
             <Layout>
-                <article className="container page">
-                    <h1>Games</h1>
+                <Hero data={hero} />
+                <section className="container">
+                    <div className={styles.cards_action}>
+                        <div>
+                            Order By:
+                            <Select options={order} />
 
-                    <ul>
+                        </div>
+                        <div>
+                            Provider:
+                            <Select options={filter_by_provider} />
+
+                        </div>
+                        <div>
+                            Type:
+                            <Select options={filter_by_type} />
+                        </div>
+                    </div>
+                </section>
+                <article className={`container page ${styles.cards_wrap}`}>
+                    <div className={styles.cards}>
                         {games.data.map((i: any, ind: number) => (
-                            <li key={ind}><Link href={`/games/${i.attributes.slug}`}>
-                                {i.attributes.title}
-                            </Link></li>
+                            <Card data={i.attributes} key={ind} />
                         ))}
-                    </ul>
+                    </div>
                 </article>
             </Layout>
         </>
