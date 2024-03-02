@@ -1906,6 +1906,7 @@ export interface ApiPrivacyPolicyPrivacyPolicy extends Schema.SingleType {
     singularName: 'privacy-policy';
     pluralName: 'privacy-policies';
     displayName: 'Privacy Policy';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1922,7 +1923,7 @@ export interface ApiPrivacyPolicyPrivacyPolicy extends Schema.SingleType {
           localized: true;
         };
       }>;
-    contet: Attribute.RichText &
+    content: Attribute.RichText &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

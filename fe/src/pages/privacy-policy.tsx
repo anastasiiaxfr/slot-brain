@@ -42,7 +42,7 @@ const PolicyPage = ({ data }: any) => {
                 <article className="container page-single">
                     <h1>{info.title}</h1>
                     <div dangerouslySetInnerHTML={{
-                        __html: marked(info.contet || ''),
+                        __html: marked(info.content || ''),
                     }}
                     />
                 </article>
