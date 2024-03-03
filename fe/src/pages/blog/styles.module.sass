@@ -10,6 +10,7 @@
         & > *
             +ps(absolute, (t, 0), (l, 0))
             +sz(100%, 100%)
+            object-fit: cover
 
     &_info
         +flex(flex, center, flex-start, wrap)
@@ -18,3 +19,30 @@
 
     &_content
         margin-bottom: var(--gapLg)
+
+
+.blog
+    &_sections
+        &_all
+            +flex(flex, stretch, flex-start, wrap)
+            gap: var(--gapMd)
+            & > a
+                width: calc(25% - 24px)
+                
+                &:nth-child(5), &:nth-child(6), &:nth-child(7)
+                    width: calc(33% - 24px)
+
+            +maw(1140)
+                & > a
+                    width: calc(33% - 24px)
+
+            +maw(840)
+                & > a
+                    &, &:nth-child(5), &:nth-child(6), &:nth-child(7)
+                        width: calc(50% - 24px)
+
+            +maw(580)
+                & > a
+                    &, &:nth-child(5), &:nth-child(6), &:nth-child(7)
+                        width: calc(100% - 24px)
+                    

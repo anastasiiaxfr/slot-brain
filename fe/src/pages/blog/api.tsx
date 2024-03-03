@@ -29,7 +29,7 @@ export async function fetchBlogs(params?: any) {
         queryParams += '&' + p
     }
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/blogs`,
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`,
     )
     const parsed = await res.json()
     return parsed
