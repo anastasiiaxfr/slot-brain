@@ -40,3 +40,54 @@ Next.js + Strapi CMS + PG + TailwindCSS
 [populate-deep](https://www.npmjs.com/package/strapi-plugin-populate-deep)
 [CKEditor](https://market.strapi.io/plugins/@_sh-strapi-plugin-ckeditor#install-now-section)
 [cloudinary](https://market.strapi.io/providers/@strapi-provider-upload-cloudinary#install-now-section)
+
+---
+
+- [blog parent](https://idealecasinos-production.up.railway.app/pages/blog.php)
+- [blog single](https://idealecasinos-production.up.railway.app/pages/blog-single.php)
+
+- [bonus single](https://idealecasinos-production.up.railway.app/pages/bonus-landing.php)
+- [bonus parent]()
+
+- [casino parent]()
+- [casino single](https://idealecasinos-production.up.railway.app/pages/casino-review.php)
+
+- [game parent]()
+- [game single](https://idealecasinos-production.up.railway.app/pages/game-review.php)
+- [game single 2](https://idealecasinos-production.up.railway.app/pages/game-landing.php)
+- [game type](https://idealecasinos-production.up.railway.app/pages/game-type-landing.php)
+
+- [payment methods]()
+- [providers]()
+
+---
+
+- [link](https://idealecasinos-production.up.railway.app/pages/landing-page.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/casino-review.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/bonus-landing.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/game-landing.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/game-review.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/game-type-landing.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/game-type-landing-sidebar.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/payment-system.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/payment-system-sidebar.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/provider-landing.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/info-page.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/blog.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/blog-single.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/category.php)
+
+- [link](https://idealecasinos-production.up.railway.app/pages/author.php)
