@@ -132,3 +132,22 @@ header, footer
                     +maw(1000)
                         +ft(13, 13*1.4, 500)
 
+.filters
+    +flex(flex, center, flex-start, wrap)
+    gap: var(--gapMd)
+
+    span
+        text-transform: uppercase
+        +ft(16, 16*1.2, 600)
+
+    & > div
+        +flex(flex, center, flex-start, wrap)
+        gap: var(--gapMd) 
+
+        & > div
+            min-width: 200px
+
+            & > div
+                border: none
+                border-bottom: $bd1
+                border-radius: 0      

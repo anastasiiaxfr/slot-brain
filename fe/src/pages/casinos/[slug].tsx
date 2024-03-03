@@ -113,7 +113,7 @@ export default function CasinosSinglePage({ casino }: any) {
                         __html: marked(data.content || ''),
                     }} className={styles.casino_content}
                     />
-                    <Link href="/blog">Go Back</Link>
+                    <Link href="/casinos">Go Back</Link>
                 </article>
             </Layout>
         </>

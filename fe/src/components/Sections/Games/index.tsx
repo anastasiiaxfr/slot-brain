@@ -1,4 +1,4 @@
-import Card from "./Card"
+import Card from "./Card-default"
 import games from "./constant"
 import styles from "./styles.module.sass"
 

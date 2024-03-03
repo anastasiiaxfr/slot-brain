@@ -1,36 +1,14 @@
 import qs from 'qs'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { fetchCasinos, shortPopulateParams } from './api'
-import Link from "next/link"
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
+import Card from "@/components/Sections/Casino/Card-default"
+import Hero from "@/components/Sections/Hero"
+import Sidebar from "./sidebar"
+import styles from "./styles.module.sass"
 
-
-const seo = {
-    metaTitle: 'Lorem Ipsum',
-    metaHeading: 'Lorem Ipsum',
-    metaDescription:
-        'Lorem Ipsum',
-    metaImg: `${process.env.NEXT_PUBLIC_HOST}/ua/og_600x300.jpg`,
-    metaURL: `${process.env.NEXT_PUBLIC_HOST}/ua/blog/`,
-}
-
-const og = [
-    { property: 'og:type', content: 'article' },
-    { property: 'og:title', content: '' },
-    { property: 'og:description', content: '' },
-    {
-        property: 'og:site_name',
-        content: '',
-    },
-    { property: 'og:url', content: '' },
-    { property: 'og:image', content: '' },
-    { property: 'og:image:width', content: '600' },
-    { property: 'og:image:height', content: '300' },
-    { property: 'og:locale', content: 'uk' },
-    { property: 'og:section', content: 'Blog' },
-    { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
-]
+import { og, seo, hero } from "./constants"
 
 const CasinosParentPage = ({ casinos }: any) => {
     return (
@@ -41,16 +19,33 @@ const CasinosParentPage = ({ casinos }: any) => {
             />
 
             <Layout>
-                <article className="container page">
-                    <h1>Casinos</h1>
-                    <ul>
-                        {casinos.data.map((i: any, ind: number) => (
-                            <li key={ind}><Link href={`/casinos/${i.attributes.slug}`}>
-                                {i.attributes.title}
-                            </Link></li>
-                        ))}
-                    </ul>
+                <Hero data={hero} />
+
+                <article className={`container page ${styles.cards_wrap}`}>
+                    <Sidebar />
+                    <section>
+
+                        <div className={styles.cards}>
+                            {casinos.data.map((i: any, ind: number) => (
+                                <Card data={i.attributes} key={ind} />
+                            ))}
+                        </div>
+
+                        <section className={styles.cards_content}>
+                            <p>
+                                Red Ventures (includes “us,” “we,” or “our”) is a portfolio of brands and digital platforms (such as mobile and/or TV applications) that connect people with information to help make some of life’s most important decisions. Some examples of Red Ventures’ brands are Allconnect, Bankrate, CNET, MyMove, Online MBA, and The Points Guy. For the purposes of this Privacy Policy, the websites, apps, and products provided by Red Ventures will be referred to as the “Services.” Certain Red Ventures Services have different privacy policies (such as our Healthline Media Sites and Services in Brazil), you should check each Service for its specific policy before use.
+                            </p>
+                            <p>
+                                This Privacy Policy describes the type of personal information that we may collect for our own purposes; how we use, protect, and share that information; and the choices that you have. By using the Services, you acknowledge the information collection practices and purposes outlined in this Privacy Policy. Any capitalized terms used, but not defined, in this Privacy Policy have the meanings provided in the Terms of Use of the applicable Services.
+                            </p>
+                            <p>
+                                In some circumstances, a Red Ventures company may receive or process Personal Information on behalf of a client. In those situations, the privacy policy of the client will apply.
+                            </p>
+                        </section>
+                    </section>
+
                 </article>
+
             </Layout>
         </>
     )

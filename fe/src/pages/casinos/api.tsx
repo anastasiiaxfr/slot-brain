@@ -29,7 +29,7 @@ export async function fetchCasinos(params?: any) {
         queryParams += '&' + p
     }
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/casinos`,
+        `${process.env.NEXT_PUBLIC_API_URL}/casinos?populate=*`,
     )
     const parsed = await res.json()
     return parsed

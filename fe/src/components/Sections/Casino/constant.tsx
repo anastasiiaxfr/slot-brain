@@ -9,28 +9,28 @@ const casinos = [
         rating: 5,
         profit: "3.109.565,88$",
         url: "/",
-        img: Img1
+        thumbnail_test: Img1
     },
     {
         title: "Dice",
         rating: 4,
         profit: "1.062.349,20$",
         url: "/",
-        img: Img2
+        thumbnail_test: Img2
     },
     {
         title: "Black Jack",
         rating: 5,
         profit: "2.678.918,95$",
         url: "/",
-        img: Img3
+        thumbnail_test: Img3
     },
     {
         title: "Gates of Olympus",
         rating: 3,
         profit: "911.335,73$",
         url: "/",
-        img: Img4
+        thumbnail_test: Img4
     }
 ]
 

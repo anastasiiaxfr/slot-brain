@@ -5,21 +5,15 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
     gap: var(--gapMd)
 
-    &_wrap
-        padding-bottom: 50px
+    &_content
+        margin-bottom: var(--gapLg)
+        h2
+            margin-bottom: var(--gap)
+            margin-top: 0
 
-    &_action
-        +flex(flex, center, center, wrap)
-        gap: var(--gapMd)
-
-        & > div
-            +flex(flex, center, flex-start, wrap)
-            gap: var(--gapMd) 
-
-            & > div
-                min-width: 200px
-
-
+        p
+            margin-bottom: var(--gap)
+            margin-top: var(--gap)
 
 .game
     &_data

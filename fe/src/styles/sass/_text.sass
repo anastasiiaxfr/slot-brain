@@ -7,10 +7,24 @@ h2
         +ft(20, 20*1.2, 700)
         text-transform: uppercase
 
-section
+.section
     h2 + p
         margin-top: var(--gap)
         +ft(30, 30*1.4, 400)
 
         +maw($md)
             +ft(18, 18*1.4, 400)
+
+.list
+    &-check
+
+        li
+            +flex(flex, center, flex-start, nowrap)
+            &::before
+                content: ''
+                display: inline-flex
+                align-items: center
+                +sz(18px, 18px)
+                margin-right: var(--gapXs)
+                background: url('../../assets/icons/checked.svg') no-repeat 50% / contain
+                

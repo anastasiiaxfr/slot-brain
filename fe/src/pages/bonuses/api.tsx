@@ -29,7 +29,7 @@ export async function fetchBonuses(params?: any) {
         queryParams += '&' + p
     }
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/bonuses`,
+        `${process.env.NEXT_PUBLIC_API_URL}/bonuses?populate=*`,
     )
     const parsed = await res.json()
     return parsed
