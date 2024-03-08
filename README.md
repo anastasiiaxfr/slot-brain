@@ -11,8 +11,13 @@ Next.js + Strapi CMS + PG + TailwindCSS
 - search
 - orderBy
 - filters
+  - games
+  - casino
+  - bonuses
 - subscribe
 - cookie
+- pagination
+- breadcrumbs
 - fetch
 - CRUD
 - SEO
@@ -22,10 +27,65 @@ Next.js + Strapi CMS + PG + TailwindCSS
   - manifest.json
   - GA/GTM
 
+### SEO:
+
+- Schema.org Breadcrumbs
+- Schema.org FAQ
+- Schema.org Organization
+- robots.txt
+- sitemap.xml
+- manifest.json
+- favicons meta
+- seo meta:
+  - og
+  - twitter
+  - g+
+- cookie
+- push nottifications:
+  - new game
+  - new casino
+  - new bonus
+- emails:
+  - new subscriber
+  - new registration
+
 ### CI/CD:
 
 - admin: https://slot-brain-production.up.railway.app/admin
 - FE: https://slot-brain.vercel.app/
+
+### Strapi CMS
+
+- Single Type:
+  - faq
+  - contact
+  - Privacy Policy
+  - Terms of Service
+  - Responsible Gaming
+- Collection Type:
+  - blog
+  - casinos
+  - bonuses
+  - games
+- Components:
+  - faq
+  - slider
+  - socials
+  - builder:
+    - faq
+    - gallery
+    - img
+    - markdown
+    - quote
+    - author
+    - lsit:
+      - unorder
+      - order
+      - props&cons
+    - top:
+      - casinos
+      - games
+      - bonuses
 
 ### UI/UX:
 

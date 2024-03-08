@@ -22,7 +22,7 @@ export default function Card({ data }: any) {
                         <IconPubDate width="16" height="16" />{new Date(data.publishedAt).toLocaleString()}
                     </span>
                     <span>
-                        <IconClock width="16" height="16" /> {data.time_read} 5 min
+                        <IconClock width="16" height="16" /> {data.read ? data.read : '5 min'}
                     </span>
                 </div>
                 <div className={styles.card_title}>

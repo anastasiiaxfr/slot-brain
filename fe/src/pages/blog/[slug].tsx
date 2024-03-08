@@ -4,6 +4,8 @@ import { marked } from 'marked'
 import Image from "next/image"
 import Link from "next/link"
 
+import Author from "@/components/Authors"
+
 import styles from "./styles.module.sass"
 
 const seo = {
@@ -57,6 +59,7 @@ export default function BlogSinglePage({ post }: any) {
                         __html: marked(post.attributes.content || ''),
                     }} className={styles.post_content}
                     />
+                    {post.attributes?.author ? <Author data={post.attributes.author} /> : null}
                     <Link href="/blog">Go Back</Link>
                 </article>
             </Layout>

@@ -941,6 +941,9 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'oneToMany',
       'api::blog.blog'
     >;
+    description: Attribute.Text;
+    trust: Attribute.Boolean;
+    contacts: Attribute.Component<'builder.soc', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1853,6 +1856,18 @@ export interface ApiGameGame extends Schema.CollectionType {
         };
       }>;
     video: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    min_bet: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    max_win: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

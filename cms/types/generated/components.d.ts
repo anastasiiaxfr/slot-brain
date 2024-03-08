@@ -13,6 +13,21 @@ export interface BuilderFaq extends Schema.Component {
   };
 }
 
+export interface BuilderSoc extends Schema.Component {
+  collectionName: 'components_builder_socs';
+  info: {
+    displayName: 'Soc';
+    icon: 'crown';
+    description: '';
+  };
+  attributes: {
+    contact: Attribute.String & Attribute.Required;
+    network: Attribute.Enumeration<
+      ['facebook', 'twitter', 'instagram', 'youtube', 'telegram']
+    >;
+  };
+}
+
 export interface SharedMetaSocial extends Schema.Component {
   collectionName: 'components_shared_meta_socials';
   info: {
@@ -70,6 +85,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'builder.faq': BuilderFaq;
+      'builder.soc': BuilderSoc;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
     }
