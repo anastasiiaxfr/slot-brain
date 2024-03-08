@@ -1,6 +1,6 @@
 ### Stack:
 
-Next.js + Strapi CMS + PG + TailwindCSS
+Next.js + Strapi CMS + PG + Sass
 
 ### Features:
 
@@ -20,6 +20,11 @@ Next.js + Strapi CMS + PG + TailwindCSS
 - breadcrumbs
 - fetch
 - CRUD
+- animations:
+  - btns
+  - cursor
+  - parallax
+  - slider / hero
 - SEO
   - meta/og
   - favicon
