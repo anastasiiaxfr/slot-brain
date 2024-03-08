@@ -16,7 +16,8 @@
 
     &_slide
         position: relative
-        +flex(flex, center, flex-start, nowrap)
+        +flex(flex, center, center, nowrap)
+        text-align: center
         max-height: 670px
         height: 550px
         flex: 1
@@ -31,22 +32,27 @@
             background-color: rgba($black, 0.25)
 
     &_title
-        margin-bottom: var(--gap)
-        +ft(60, 60*1.2, 400)
+        margin-bottom: 0
+        //+ft(60, 60*1.2, 900)
+        +ft(20, 20*1.2, 700)
+        letter-spacing: 0.1em
 
     &_description
         display: block
         margin-bottom: var(--gapMd)
-        +ft(35, 35*1.2, 400)
+        +ft(35, 35*1.2, 700)
 
         b   
             display: block
-            margin-bottom: var(--gapXs)
-            +ft(43, 43*1.2, 500)
+            margin-bottom: 0
+            //+ft(43, 43*1.2, inherit)
+            +ft(60, 60*1.2, 900)
+            font-size: 2em
 
     &_cta
         display: flex
         flex-wrap: wrap
+        justify-content: center
         row-gap: var(--gap)
         column-gap: var(--gapMd)
     

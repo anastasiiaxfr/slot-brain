@@ -6,8 +6,7 @@ a
     margin-top: var(--gapXlg)
     margin-bottom: var(--gapXlg)
 
-
-    h1, h2, h3, h4, h5, h6
+    h1:not([class]), h2:not([class]), h3:not([class]), h4:not([class]), h5:not([class]), h6:not([class])
         margin-top: var(--gapMd)
         margin-bottom: var(--gap)
 
@@ -23,6 +22,57 @@ a
 
     & > *:first-child
         margin-top: 0
+
+    &-single
+        h1, h2, h3 
+            +ft(40, 40*1.4, 700)
+            color: $grey3
+    
+        h4, h5, h6
+            +ft(28, 28*1.4, 700)
+            color: $grey3
+
+        p
+            color: $grey4
+
+            a
+                text-decoration: underline
+                color: darken($main, 20%)
+                transition: $trs
+
+                &:hover, &:active, &:focus
+                    text-decoration: underline
+
+
+        p > img
+            margin: var(--gapMd) auto
+
+        +maw($md)
+            h1, h2, h3 
+                +ft(20, 20*1.4, 700)
+    
+            h4, h5, h6
+                +ft(17, 17*1.4, 700)
+    
+    &-sidebar
+        +flex(flex, flex-start, flex-start, wrap)
+        gap: var(--gapLg)
+
+        & > section
+            flex: 1
+
+        aside
+            max-width: 300px
+            width: 100%
+
+            h2, h3, h4, h5, h6
+                text-transform: uppercase
+                +ft(16, 16*1.2, 700)
+
+        +maw($md)
+            aside
+                display: none
+
 
     &-error
         +flex(flex, center, center, nowrap, column)

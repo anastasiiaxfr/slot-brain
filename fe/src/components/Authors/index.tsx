@@ -6,7 +6,7 @@ import AuthorImg from "@/assets/img/authors/author-1.png"
 import UpprovedIcon from "@/assets/icons/upproved.svg"
 
 export default function Author({ data }: any) {
-    console.log(data)
+    //console.log(data)
     return (
         <section className={styles.author}>
             <div className="container">
@@ -18,7 +18,7 @@ export default function Author({ data }: any) {
                     <div>
                         <div className={styles.author_name}>
                             <span>{data.data.attributes.name}</span>
-                            <UpprovedIcon width={24} height={24} />
+                            {data.data.attributes.trust && <UpprovedIcon width={24} height={24} />}
                         </div>
                         <div className={styles.author_job}>
                             {data.data.attributes.job}
@@ -30,9 +30,9 @@ export default function Author({ data }: any) {
 
                 </div>
                 <div className={styles.author_content}>
-                    <div className={styles.author_description}>
-                        Carlos has a BA in Hispanic Studies from the Pontificia Universidad Católica of PR. He’s finishing his MA in Linguistics, focusing on sociolinguistics.
-                    </div>
+                    {data.data.attributes.description ? <div className={styles.author_description}>
+                        {data.data.attributes.description}
+                    </div> : null}
 
                     <div className=""> <b>Last Articles</b> </div>
 
@@ -47,7 +47,9 @@ export default function Author({ data }: any) {
 
                 </div>
                 <div className={styles.author_footer}>
-
+                    {data.data.attributes?.contacts?.map((i: any, ind: number) => (
+                        i.network
+                    ))}
                 </div>
             </div>
         </section >

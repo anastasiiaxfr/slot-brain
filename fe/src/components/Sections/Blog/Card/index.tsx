@@ -7,10 +7,9 @@ import IconEye from "@/assets/icons/eye.svg"
 
 import styles from "./styles.module.sass"
 
-export default function Card({ data }: any) {
-    console.log(data)
+export default function Card({ data, slug }: any) {
     return (
-        <Link className={styles.card} href={`blog/${data.slug}`}>
+        <Link className={styles.card} href={`${slug}`}>
             <div className={styles.card_wrap}>
                 <Image src={data.img.data.attributes.url} alt={data.title} width={400} height={200} />
                 {data.blog_category?.data?.attributes?.name ? <div className={styles.card_chip}>{data.blog_category?.data?.attributes?.name}</div> : null}

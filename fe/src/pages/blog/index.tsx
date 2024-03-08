@@ -42,7 +42,7 @@ const BlogParentPage = ({ blogs }: any) => {
 
                         <div className={styles.blog_sections_all}>
                             {blogs.data.slice(0, blogs.data.length).map((i: any, ind: number) => (
-                                <Card key={ind} data={i.attributes} />
+                                <Card key={ind} data={i.attributes} slug={`blog/${i.attributes.slug}`} />
                             ))}
                         </div>
 

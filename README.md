@@ -18,6 +18,7 @@ Next.js + Strapi CMS + PG + Sass
 - cookie
 - pagination
 - breadcrumbs
+- share
 - fetch
 - CRUD
 - animations:

@@ -4,6 +4,7 @@
     +flex(flex, flex-start, space-between, nowrap, column)
     box-shadow: $bxsd
     border-radius: var(--brsXs)
+    background-color: $white
     transition: $trs
 
     &:hover, &:focus, &:active
@@ -55,3 +56,6 @@
             +sz(100%, 100%)
             object-fit: cover
                 
+    +maw($sm)
+        &_title
+            +ft(15, 15*1.4, 600)

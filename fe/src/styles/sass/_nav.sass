@@ -8,6 +8,9 @@ html, body, body > *:first-child
     margin: 0
     padding: 0
 
+body
+    background-color: $grey0
+
 .wrapper
     flex: 1 0 auto
     display: flex
@@ -38,6 +41,12 @@ html, body, body > *:first-child
     +maw($md)
         margin-top: 48px
         margin-bottom: 48px
+
+    &_header
+        +flex(flex, center, flex-start, nowrap)
+        gap: var(--gap)
+        margin-top: var(--gapMd)
+        margin-bottom: var(--gapSm)
 
 header, footer 
     .container
