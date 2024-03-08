@@ -29,27 +29,9 @@
     //+ft(22, 22*1.2, 600)
     +ft(17, 17*1, 700)
     text-transform: uppercase
+    text-align: center
     transition: $trs
     overflow: hidden
-
-    // &:after 
-    //     content: attr(data-text)
-    //     display: inline-block
-    //     position: absolute
-    //     margin: auto
-    //     text-rendering: auto
-    //     color: $black
-    //     transform: translateY(200%)
-    //     transition: all 0.3s ease-in-out
-    //     opacity: 1
-
-    // &::before 
-    //     content: attr(data-text)
-    //     display: inline-block
-    //     +ps(absolute)
-    //     margin: auto
-    //     color: $black
-    //     transition: all 0.3s ease-in-out
   
     &::before
         content: ""
@@ -82,13 +64,6 @@
         background-color: darken($main, 10%)
         color: $white
 
-        // &::before 
-        //     opacity: 0 
-        //     transform: translateY(-100%)
-
-        // &::after
-        //     opacity: 1 
-        //     transform: none
 
     +maw($md)
         +ft(16, 16*1.2, 600)
@@ -107,13 +82,12 @@
         &:hover, &:active, &:focus
             background-color: transparent
             border-color: transparent
-            //color: $black
 
     &-text
         min-width: 0
-        padding: 0 10px
+        padding: 0
         background: transparent
-        color: $white
+        color: inherit
         
         &:hover, &:active, &:focus
             background-color: transparent
@@ -136,6 +110,15 @@
             color: darken($main, 10%)
             &::before, &::after
                 display: none
+
+    &-icon
+        min-width: 0
+        gap: var(--gapXs)
+        padding: 12px 18px
+        background-color: $white
+        border: $bd2
+        text-transform: capitalize
+
 
 
 .chip

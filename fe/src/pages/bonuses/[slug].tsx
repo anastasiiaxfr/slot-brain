@@ -6,6 +6,11 @@ import Link from "next/link"
 
 import styles from "./styles.module.sass"
 
+import Sidebar from "@/components/Sections/Sidebar"
+import Hero from "./Hero"
+import Table from "@/components/Sections/Bonuses/Table"
+
+import IconShowMore from "@/assets/icons/reload.svg"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -33,7 +38,7 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-export default function BonusesSingelPage({ bonus }: any) {
+export default function BonusesSingelPage({ bonus, all_bonuses, all_posts, all_casinos }: any) {
     console.log(bonus.attributes)
     const data = bonus.attributes
 
@@ -45,60 +50,44 @@ export default function BonusesSingelPage({ bonus }: any) {
             />
 
             <Layout>
+                <section className="">
+                    <Hero data={data} />
+                </section>
+
+
                 <article className="container page">
-                    <h1>{data.title}</h1>
 
-                    <div className={styles.bonus}>
-                        {data.img?.data?.attributes?.url ? <div className={styles.bonus_logo}>
-                            <Image src={data.img?.data?.attributes?.url} alt={data.title} height={150} width={300} />
-                        </div> : null}
-                        <table className="table">
-                            <tr>
-                                <th> Offer: </th>
-                                <td> {data.description} </td>
-                            </tr>
-                            <tr>
-                                <th> Type: </th>
-                                <td> {data.bonuse_type.data.attributes.name} </td>
-                            </tr>
-                            <tr>
-                                <th> Promo Code: </th>
-                                <td> {data.promocode} </td>
-                            </tr>
-                            <tr>
-                                <th> Rating: </th>
-                                <td> {data.rating} </td>
-                            </tr>
-                            {data.payment_methods ? <tr>
-                                <th> Payment methods: </th>
-                                <td>{data.payment_methods.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.code}</span>))}</td>
-                            </tr> : null}
-                            {data.currencies ? <tr>
-                                <th>Currencies: </th>
-                                <td>{data.currencies.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.code}</span>))}</td>
-                            </tr> : null}
-                            {data.countries ? <tr>
-                                <th>GEO: </th>
-                                <td>{data.countries.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.code}</span>))}</td>
-                            </tr> : null}
-                            {data.free_spin ? <tr>
-                                <th>Free Spins: </th>
-                                <td>{data.free_spin.data.attributes.value}</td>
-                            </tr> : null}
+                    <article className="page-sidebar">
+                        <section>
+                            {data.thumbnail?.data?.attributes?.url ? <div className={styles.bonus_img}>
+                                <Image src={data.thumbnail?.data?.attributes?.url} alt={data.title} height={400} width={800} />
+                            </div> : null}
 
-                        </table>
-                    </div>
+                            <div dangerouslySetInnerHTML={{
+                                __html: marked(data.content || ''),
+                            }} className={styles.bonus_content}
+                            />
+                            <Link href="/bonuses" className="btn btn-text">Go Back</Link>
 
-                    {data.thumbnail?.data?.attributes?.url ? <div className={styles.bonus_img}>
-                        <Image src={data.thumbnail?.data?.attributes?.url} alt={data.title} height={400} width={800} />
-                    </div> : null}
+                            <div className={styles.bonus_related}>
+                                {all_bonuses.slice(0, 3).map((i: any, ind: number) => (
+                                    <Table data={i.attributes} key={ind} />
+                                ))}
+                            </div>
+                            <center>
+                                <Link href="/bonuses" className="btn btn-icon">
+                                    <IconShowMore width="16" height="16" />
+                                    Show more
+                                </Link>
+                            </center>
 
-                    <div dangerouslySetInnerHTML={{
-                        __html: marked(data.content || ''),
-                    }} className={styles.bonus_content}
-                    />
+                        </section>
+                        <aside>
+                            <Sidebar posts={all_posts} casinos={all_casinos} />
+                        </aside>
+                    </article>
 
-                    <Link href="/bonuses">Go Back</Link>
+
                 </article>
             </Layout>
         </>
@@ -127,18 +116,39 @@ export async function getStaticProps({ params }: any) {
         `${process.env.NEXT_PUBLIC_API_URL}/bonuses?filters[slug][$eq]=${slug}&populate=*`
     );
 
-    if (!res.ok) {
+    const posts = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+    );
+
+    const casinos = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/casinos?populate=*`
+    );
+
+    const bonuses = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/bonuses?populate=*`
+    );
+
+    if (!res.ok || !posts.ok) {
         return {
             notFound: true,
         };
     }
 
     const data = await res.json();
+    const get_posts = await posts.json();
+    const get_casinos = await casinos.json();
+    const get_bonuses = await bonuses.json();
     const bonus = data.data[0];
+    const all_posts = get_posts.data;
+    const all_casinos = get_casinos.data;
+    const all_bonuses = get_bonuses.data;
 
     return {
         props: {
             bonus,
+            all_posts,
+            all_casinos,
+            all_bonuses
         },
     };
 }

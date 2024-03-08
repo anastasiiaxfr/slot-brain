@@ -8,7 +8,7 @@ import ClockIcon from "@/assets/icons/clock.svg"
 import BackIcon from "@/assets/icons/share.svg"
 import ArrowIcon from "@/assets/icons/arr-rt.svg"
 
-import Sidebar from "./Sidebar"
+import Sidebar from "../../components/Sections/Sidebar"
 import Author from "@/components/Authors"
 import Posts from "./Posts"
 

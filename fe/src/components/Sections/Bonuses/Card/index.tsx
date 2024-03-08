@@ -6,7 +6,7 @@ import styles from "./styles.module.sass"
 
 
 export default function Card({ data }: any) {
-    console.log(data)
+    //console.log(data)
     return (
         <section className={styles.card}>
             <Link className={styles.card_img} href={`bonuses/${data.slug}`}>
