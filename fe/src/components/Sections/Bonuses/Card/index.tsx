@@ -26,7 +26,7 @@ export default function Card({ data }: any) {
                     </div>
                     <Link href="/">View Bonuse</Link>
                 </div>
-                <Link className={`btn ${styles.btn}`} href={`bonuses/${data.slug}`}>Get the Bonuse</Link>
+                <Link className={`btn ${styles.btn}`} href={`bonuses/${data.slug}`} data-text={"Get the Bonuse"}>Get the Bonuse</Link>
                 <div className={styles.card_list}>
                     <ul className="list-check">
                         <li>

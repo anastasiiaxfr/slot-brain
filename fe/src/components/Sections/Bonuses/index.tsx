@@ -44,7 +44,7 @@ export default function Bonuses() {
 
                             </div>
                             <div className={styles.card_cta}>
-                                <Link className={`btn ${styles.card_btn}`} href={i.url_blank}>
+                                <Link className={`btn ${styles.card_btn}`} href={i.url_blank} data-text={"Get a bonus"}>
                                     Get a bonus
                                 </Link>
                                 <Link className={styles.card_btn_link} href={i.url_self}>

@@ -56,7 +56,7 @@ export default function Faq() {
                 </div>
 
                 <div className={styles.faq_cta}>
-                    <a href="#" className="btn" role="button">More details</a>
+                    <a href="#" className="btn" role="button" data-text="More details">More details</a>
                 </div>
 
             </div>

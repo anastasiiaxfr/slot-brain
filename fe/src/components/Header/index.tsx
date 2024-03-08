@@ -26,8 +26,8 @@ export default function Header() {
                         <Search type="sm" placeholder="Search" />
 
                         <div className={styles.header_cta}>
-                            <Link href="/" className="btn btn-text">Sign in</Link><span>&nbsp;</span>
-                            <Link href="/" className={`btn ${styles.header_btn}`}>Register for free</Link>
+                            <Link href="/" className="btn btn-text" data-text="Sign in">Sign in</Link><span>&nbsp;</span>
+                            <Link href="/" className={`btn ${styles.header_btn}`} data-text="Register for free">Register for free</Link>
                         </div>
                     </div>
 
@@ -63,8 +63,8 @@ export default function Header() {
                     </div>
                 </div>
                 <div className={styles.header_cta}>
-                    <Link href="/" className="btn btn-text">Sign in</Link><span>&nbsp;</span>
-                    <Link href="/" className={`btn ${styles.header_btn}`}>Register for free</Link>
+                    <Link href="/" className="btn btn-text" data-text="Sign In">Sign in</Link><span>&nbsp;</span>
+                    <Link href="/" className={`btn ${styles.header_btn}`} data-text="Register for free">Register for free</Link>
                 </div>
             </div>
         </header>

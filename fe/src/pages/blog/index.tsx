@@ -41,7 +41,7 @@ const BlogParentPage = ({ blogs }: any) => {
                         {/* <h2>Editor Choise</h2> */}
 
                         <div className={styles.blog_sections_all}>
-                            {blogs.data.slice(4, blogs.data.length).map((i: any, ind: number) => (
+                            {blogs.data.slice(0, blogs.data.length).map((i: any, ind: number) => (
                                 <Card key={ind} data={i.attributes} />
                             ))}
                         </div>

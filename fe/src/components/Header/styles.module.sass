@@ -27,7 +27,6 @@
             transition: $trs
             &:hover, &:focus, &:active
                 color: $main
-                text-decoration: underline
 
     &_cta, &_action
         +flex(flex, center, center, wrap)
@@ -36,8 +35,12 @@
     &_btn
         min-width: 0
         padding: 10px 15px
+       
 
     &_cta
+        a   
+            +ft(17, 17*1, 700)
+
         span
             display: block
             margin-right: 10px

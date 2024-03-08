@@ -18,6 +18,7 @@ export default function Hero({ data }: any) {
                                 key={ind}
                                 className={`btn ${j.type === "bd" ? `${styles.hero_btn_bd} btn-bd` : styles.hero_btn}`}
                                 href={j.url}
+                                data-text={j.title}
                             >
                                 {j.title}
                             </Link>

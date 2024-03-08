@@ -70,9 +70,7 @@ header, footer
 
         a
             transition: $trs
-            &:hover, &:active, &:focus
-                color: $main
-                text-decoration: underline
+           
 
     &-top
         display: grid
@@ -112,20 +110,16 @@ header, footer
             grid-template-columns: repeat(auto-fit,minmax(100px, auto))
 
             &-col
-                & > a
-                    display: block
-
                 a
                     transition: $trs
                     &:hover, &:active, &:focus
                         color: $main
-                        text-decoration: underline
 
                 ul
                     margin-top: 24px
 
                 li a
-                    display: block
+                    display: inline-block
                     margin-bottom: 16px
                     +ft(17, 17*1.4, 500)
                     
@@ -151,3 +145,28 @@ header, footer
                 border: none
                 border-bottom: $bd1
                 border-radius: 0      
+
+header, footer
+    nav a
+        position: relative
+        display: inline-flex
+        text-decoration: none
+
+        &::after 
+            content: ''
+            position: absolute
+            +ps(absolute, (b, 0), (l, 0))
+            +sz(100%, 2px)
+            transform: scaleX(0)
+            background-color: $main
+            transform-origin: bottom right
+            transition: transform 0.25s ease-out
+
+        &:hover, &:active, &:focus
+            color: $main
+            text-decoration: none
+
+        &:hover::after 
+            transform: scaleX(1)
+            transform-origin: bottom left
+        
