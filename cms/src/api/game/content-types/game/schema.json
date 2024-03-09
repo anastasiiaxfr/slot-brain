@@ -75,19 +75,6 @@
       },
       "type": "string"
     },
-    "video": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "videos"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "min_bet": {
       "pluginOptions": {
         "i18n": {
@@ -141,6 +128,16 @@
         }
       },
       "type": "string"
+    },
+    "video": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "builder.video"
     }
   }
 }

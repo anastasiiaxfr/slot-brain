@@ -155,7 +155,7 @@
       },
       "type": "decimal"
     },
-    "Builder": {
+    "builder": {
       "pluginOptions": {
         "i18n": {
           "localized": true

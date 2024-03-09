@@ -223,6 +223,18 @@ export interface BuilderSoc extends Schema.Component {
   };
 }
 
+export interface BuilderVideo extends Schema.Component {
+  collectionName: 'components_builder_videos';
+  info: {
+    displayName: 'Video';
+    icon: 'crown';
+  };
+  attributes: {
+    url: Attribute.String;
+    video: Attribute.Media;
+  };
+}
+
 export interface SharedMetaSocial extends Schema.Component {
   collectionName: 'components_shared_meta_socials';
   info: {
@@ -296,6 +308,7 @@ declare module '@strapi/types' {
       'builder.providers': BuilderProviders;
       'builder.quote': BuilderQuote;
       'builder.soc': BuilderSoc;
+      'builder.video': BuilderVideo;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
     }

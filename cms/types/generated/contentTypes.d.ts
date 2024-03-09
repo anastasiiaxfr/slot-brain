@@ -1417,7 +1417,7 @@ export interface ApiCasinoCasino extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    Builder: Attribute.DynamicZone<
+    builder: Attribute.DynamicZone<
       [
         'builder.markdown',
         'builder.props-and-cons',
@@ -1913,12 +1913,6 @@ export interface ApiGameGame extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    video: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     min_bet: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1932,7 +1926,12 @@ export interface ApiGameGame extends Schema.CollectionType {
         };
       }>;
     builder: Attribute.DynamicZone<
-      ['builder.accordion', 'builder.markdown', 'builder.gallery']
+      [
+        'builder.accordion',
+        'builder.markdown',
+        'builder.gallery',
+        'builder.casinos'
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1952,6 +1951,12 @@ export interface ApiGameGame extends Schema.CollectionType {
         };
       }>;
     Paylines: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    video: Attribute.Component<'builder.video'> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

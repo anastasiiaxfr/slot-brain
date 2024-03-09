@@ -46,11 +46,8 @@ export default function GamesSinglePage({ game, all_casinos, all_posts }: any) {
             <Layout>
                 <article className="container page page-sidebar">
 
-                    <section>
-                        <div dangerouslySetInnerHTML={{
-                            __html: marked(data.content || ''),
-                        }} className={styles.casino_content}
-                        />
+                    <section className="page-article">
+                        <Builder data={data} />
                     </section>
                     <aside>
                         <Sidebar posts={all_posts} casinos={all_casinos} />
