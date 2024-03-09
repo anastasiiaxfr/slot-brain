@@ -1884,12 +1884,6 @@ export interface ApiGameGame extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    content: Attribute.RichText &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     game_type: Attribute.Relation<
       'api::game.game',
       'oneToOne',
@@ -1932,6 +1926,32 @@ export interface ApiGameGame extends Schema.CollectionType {
         };
       }>;
     max_win: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    builder: Attribute.DynamicZone<
+      ['builder.accordion', 'builder.markdown', 'builder.gallery']
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    RTP: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Reels: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Paylines: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

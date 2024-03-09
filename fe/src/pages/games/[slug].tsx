@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
 import { marked } from 'marked'
-import Image from "next/image"
-import Link from "next/link"
 import styles from "./styles.module.sass"
+
+import Builder from "@/components/Builder"
+import Sidebar from "@/components/Sections/Sidebar"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -31,7 +32,7 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-export default function GamesSinglePage({ game }: any) {
+export default function GamesSinglePage({ game, all_casinos, all_posts }: any) {
     //console.log(game.attributes);
     const data = game.attributes;
 
@@ -43,32 +44,18 @@ export default function GamesSinglePage({ game }: any) {
             />
 
             <Layout>
-                <article className="container page">
-                    <h1>{data.title}</h1>
+                <article className="container page page-sidebar">
 
-                    {data.img.data?.attributes?.url ? <div className={styles.casino_logo}>
-                        <Image src={data.img.data.attributes.url} alt={data.title} height={150} width={300} />
-                    </div> : null}
+                    <section>
+                        <div dangerouslySetInnerHTML={{
+                            __html: marked(data.content || ''),
+                        }} className={styles.casino_content}
+                        />
+                    </section>
+                    <aside>
+                        <Sidebar posts={all_posts} casinos={all_casinos} />
+                    </aside>
 
-                    <div className={styles.game_data}>
-                        <table>
-                            <tr>
-                                <th>Type: </th>
-                                <td>{data.game_type.data.attributes.name}</td>
-                            </tr>
-                            <tr>
-                                <th>Provider: </th>
-                                <td>{data.game_provider.data.attributes.name}</td>
-                            </tr>
-
-                        </table>
-                    </div>
-
-                    <div dangerouslySetInnerHTML={{
-                        __html: marked(data.content || ''),
-                    }} className={styles.casino_content}
-                    />
-                    <Link href="/blog">Go Back</Link>
                 </article>
             </Layout>
         </>
@@ -95,6 +82,14 @@ export async function getStaticProps({ params }: any) {
         `${process.env.NEXT_PUBLIC_API_URL}/games?filters[slug][$eq]=${slug}&populate=*`
     );
 
+    const posts = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+    );
+
+    const casinos = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/casinos?populate=*`
+    );
+
     if (!res.ok) {
         return {
             notFound: true,
@@ -102,11 +97,17 @@ export async function getStaticProps({ params }: any) {
     }
 
     const data = await res.json();
+    const get_posts = await posts.json();
+    const get_casinos = await casinos.json();
     const game = data.data[0];
+    const all_posts = get_posts.data;
+    const all_casinos = get_casinos.data;
 
     return {
         props: {
             game,
+            all_posts,
+            all_casinos,
         },
     };
 }

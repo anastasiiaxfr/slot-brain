@@ -10,13 +10,13 @@ export default function Builder({ data }: any) {
                     switch (el.__component) {
                         case 'builder.markdown':
                             return (
-                                <div
+                                <>{el.show === false ? null : <div
                                     className=""
                                     key={`${el.id}${ind}`}
                                     dangerouslySetInnerHTML={{
                                         __html: marked(el.content || ''),
                                     }}
-                                />
+                                />}</>
                             )
                         case 'builder.quote':
                             return (

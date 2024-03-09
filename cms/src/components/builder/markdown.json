@@ -9,6 +9,10 @@
   "attributes": {
     "content": {
       "type": "richtext"
+    },
+    "show": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

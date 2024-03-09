@@ -9,9 +9,9 @@ export default function Hero({ data }: any) {
     return (
         <section className={styles.hero}>
             <div className="container">
-                <div className={styles.hero_img}>
-                    <Image src={data.thumbnail.data.attributes.url} alt={data.title} height={150} width={300} />
-                </div>
+                {data?.thumbnail.data && <div className={styles.hero_img}>
+                    <Image src={data?.thumbnail?.data?.attributes?.url} alt={data.title} height={150} width={300} />
+                </div>}
                 <div className={styles.hero_content}>
                     <div className={styles.hero_header}>
                         <span className={styles.hero_cat}>

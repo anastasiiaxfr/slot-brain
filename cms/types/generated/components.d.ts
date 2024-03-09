@@ -26,6 +26,21 @@ export interface BuilderBonuses extends Schema.Component {
   };
 }
 
+export interface BuilderCasinos extends Schema.Component {
+  collectionName: 'components_builder_casinos';
+  info: {
+    displayName: 'Casinos';
+    icon: 'crown';
+  };
+  attributes: {
+    casinos: Attribute.Relation<
+      'builder.casinos',
+      'oneToMany',
+      'api::casino.casino'
+    >;
+  };
+}
+
 export interface BuilderCons extends Schema.Component {
   collectionName: 'components_builder_cons';
   info: {
@@ -136,6 +151,7 @@ export interface BuilderMarkdown extends Schema.Component {
   };
   attributes: {
     content: Attribute.RichText;
+    show: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
@@ -265,6 +281,7 @@ declare module '@strapi/types' {
     export interface Components {
       'builder.accordion': BuilderAccordion;
       'builder.bonuses': BuilderBonuses;
+      'builder.casinos': BuilderCasinos;
       'builder.cons': BuilderCons;
       'builder.faq': BuilderFaq;
       'builder.feature-list': BuilderFeatureList;
