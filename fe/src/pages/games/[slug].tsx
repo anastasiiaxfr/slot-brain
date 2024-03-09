@@ -32,7 +32,7 @@ const og = [
 ]
 
 export default function GamesSinglePage({ game }: any) {
-    console.log(game.attributes);
+    //console.log(game.attributes);
     const data = game.attributes;
 
     return (

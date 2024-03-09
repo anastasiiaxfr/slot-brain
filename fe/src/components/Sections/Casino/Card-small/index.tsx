@@ -2,14 +2,15 @@ import styles from "./styles.module.sass"
 import Link from "next/link"
 import Image from "next/image"
 
+import ImgDefault from "@/assets/img/casino/casino_default.jpg"
 import StarIcon from "@/assets/icons/star.svg"
 
 export default function Card({ data }: any) {
-    console.log(data)
+    //console.log(data)
     return (
         <section className={styles.card}>
             <Link className={styles.card_img} href={data.slug}>
-                <Image alt={data.title} width={100} height={100} src={data.thumbnail.data.attributes.url} />
+                <Image src={data.thumbnail_test ? data.thumbnail_test : data?.thumbnail?.data?.attributes?.url || ImgDefault} alt={data?.title} width={400} height={200} />
             </Link>
             <div className={styles.card_content}>
                 <div className={styles.card_title}>

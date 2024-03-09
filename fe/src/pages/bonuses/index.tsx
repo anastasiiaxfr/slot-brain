@@ -12,7 +12,7 @@ import Select from 'react-select'
 import { og, seo, hero, filter_by_provider, filter_by_type, order } from "./constants"
 
 const BonusesParentPage = ({ bonuses }: any) => {
-    console.log(bonuses)
+    //console.log(bonuses)
     return (
         <>
             <Seo

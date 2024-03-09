@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
-import { marked } from 'marked'
-import Image from "next/image"
-import Link from "next/link"
+import Builder from "@/components/Builder"
 
 import styles from "./styles.module.sass"
 
@@ -36,7 +34,7 @@ const og = [
 ]
 
 export default function CasinosSinglePage({ casino, all_casinos, all_posts }: any) {
-    //console.log(casino.attributes);
+    //console.log(casino.attributes.Builder);
     const data = casino.attributes;
 
     return (
@@ -49,8 +47,8 @@ export default function CasinosSinglePage({ casino, all_casinos, all_posts }: an
             <Layout>
                 <Hero data={data} />
                 <article className="container page page-sidebar">
-                    <section>
-
+                    <section className="page-article">
+                        <Builder data={data} />
                     </section>
                     <aside>
                         <Sidebar posts={all_posts} casinos={all_casinos} />
@@ -87,7 +85,7 @@ export async function getStaticProps({ params }: any) {
     );
 
     const casinos = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/casinos`
+        `${process.env.NEXT_PUBLIC_API_URL}/casinos?populate=*`
     );
 
     if (!res.ok || !posts.ok) {

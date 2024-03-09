@@ -5,7 +5,7 @@ import styles from "./styles.module.sass"
 import ImgDefault from "@/assets/img/casino/casino_default.jpg"
 
 export default function Card({ data }: any) {
-    console.log(data)
+    //console.log(data)
     return (
         <Link href={data.slug ? 'casinos/' + data.slug : data.url} className={styles.card}>
             <div className={styles.card_wrap}>

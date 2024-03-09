@@ -17,7 +17,7 @@ export const shortPopulateParams = {
 
 export async function fetchCasinos(params?: any) {
     const { queryKey, pageParam } = params
-    console.log('queryKey:', queryKey); // Add this line for debugging
+    //console.log('queryKey:', queryKey); // Add this line for debugging
 
     let queryParams = queryKey && queryKey[1] ? queryKey[1] : '';
 
@@ -29,7 +29,7 @@ export async function fetchCasinos(params?: any) {
         queryParams += '&' + p
     }
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/casinos`,
+        `${process.env.NEXT_PUBLIC_API_URL}/casinos?populate=*`,
     )
     const parsed = await res.json()
     return parsed

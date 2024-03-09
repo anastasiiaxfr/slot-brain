@@ -39,7 +39,7 @@ const og = [
 ]
 
 export default function BonusesSingelPage({ bonus, all_bonuses, all_posts, all_casinos }: any) {
-    console.log(bonus.attributes)
+    //console.log(bonus.attributes)
     const data = bonus.attributes
 
     return (

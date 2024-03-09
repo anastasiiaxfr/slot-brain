@@ -5,7 +5,7 @@ import Link from "next/link"
 import IconStar from "@/assets/icons/star.svg"
 
 export default function Hero({ data }: any) {
-    console.log(data)
+    //console.log(data)
     return (
         <section className={styles.hero}>
             <div className="container">

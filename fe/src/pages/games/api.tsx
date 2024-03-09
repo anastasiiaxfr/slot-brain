@@ -17,7 +17,7 @@ export const shortPopulateParams = {
 
 export async function fetchGames(params?: any) {
     const { queryKey, pageParam } = params
-    console.log('queryKey:', queryKey); // Add this line for debugging
+    //console.log('queryKey:', queryKey); // Add this line for debugging
 
     let queryParams = queryKey && queryKey[1] ? queryKey[1] : '';
 
