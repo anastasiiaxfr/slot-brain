@@ -4,7 +4,8 @@
   "info": {
     "singularName": "casino-provider",
     "pluralName": "casino-providers",
-    "displayName": "Casino Provider"
+    "displayName": "Casino Provider",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,26 @@
       "relation": "manyToMany",
       "target": "api::casino.casino",
       "mappedBy": "casino_providers"
+    },
+    "url": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }

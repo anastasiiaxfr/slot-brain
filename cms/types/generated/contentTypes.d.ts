@@ -920,6 +920,34 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAppApp extends Schema.CollectionType {
+  collectionName: 'apps';
+  info: {
+    singularName: 'app';
+    pluralName: 'apps';
+    displayName: 'App';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    icon: Attribute.Media;
+    casinos: Attribute.Relation<
+      'api::app.app',
+      'manyToMany',
+      'api::casino.casino'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::app.app', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::app.app', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiAuthorAuthor extends Schema.CollectionType {
   collectionName: 'authors';
   info: {
@@ -1389,6 +1417,29 @@ export interface ApiCasinoCasino extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    Builder: Attribute.DynamicZone<
+      [
+        'builder.markdown',
+        'builder.props-and-cons',
+        'builder.quote',
+        'builder.providers',
+        'builder.bonuses',
+        'builder.game-table',
+        'builder.accordion',
+        'builder.feature-list',
+        'builder.link-list'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    apps: Attribute.Relation<
+      'api::casino.casino',
+      'manyToMany',
+      'api::app.app'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1419,6 +1470,7 @@ export interface ApiCasinoProviderCasinoProvider extends Schema.CollectionType {
     singularName: 'casino-provider';
     pluralName: 'casino-providers';
     displayName: 'Casino Provider';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1440,6 +1492,18 @@ export interface ApiCasinoProviderCasinoProvider extends Schema.CollectionType {
       'manyToMany',
       'api::casino.casino'
     >;
+    url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    logo: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1895,6 +1959,7 @@ export interface ApiGameProviderGameProvider extends Schema.CollectionType {
     singularName: 'game-provider';
     pluralName: 'game-providers';
     displayName: 'Game Provider';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1909,6 +1974,18 @@ export interface ApiGameProviderGameProvider extends Schema.CollectionType {
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
+        };
+      }>;
+    url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    logo: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
         };
       }>;
     createdAt: Attribute.DateTime;
@@ -2100,6 +2177,7 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
     singularName: 'payment-method';
     pluralName: 'payment-methods';
     displayName: 'Payment Method';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -2132,6 +2210,18 @@ export interface ApiPaymentMethodPaymentMethod extends Schema.CollectionType {
       'manyToMany',
       'api::casino.casino'
     >;
+    url: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    logo: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2355,6 +2445,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::app.app': ApiAppApp;
       'api::author.author': ApiAuthorAuthor;
       'api::blog.blog': ApiBlogBlog;
       'api::blog-category.blog-category': ApiBlogCategoryBlogCategory;

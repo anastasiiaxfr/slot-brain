@@ -4,7 +4,8 @@
   "info": {
     "singularName": "game-provider",
     "pluralName": "game-providers",
-    "displayName": "Game Provider"
+    "displayName": "Game Provider",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,26 @@
         }
       },
       "type": "string"
+    },
+    "url": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
     }
   }
 }

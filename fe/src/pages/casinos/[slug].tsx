@@ -6,6 +6,8 @@ import Link from "next/link"
 
 import styles from "./styles.module.sass"
 
+import Hero from "./Hero"
+import Sidebar from "@/components/Sections/Sidebar"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -33,7 +35,7 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-export default function CasinosSinglePage({ casino }: any) {
+export default function CasinosSinglePage({ casino, all_casinos, all_posts }: any) {
     //console.log(casino.attributes);
     const data = casino.attributes;
 
@@ -45,75 +47,14 @@ export default function CasinosSinglePage({ casino }: any) {
             />
 
             <Layout>
-                <article className="container page">
-                    <h1>{data.title}</h1>
+                <Hero data={data} />
+                <article className="container page page-sidebar">
+                    <section>
 
-                    {data.thumbnail.data?.attributes?.url ? <div className={styles.casino_logo}>
-                        <Image src={data.thumbnail.data.attributes.url} alt={data.title} height={150} width={300} />
-                    </div> : null}
-
-                    <div className={styles.casino_data}>
-
-                        <table className="table">
-
-                            <tr>
-                                <th> Name: </th>
-                                <td> {data.title} </td>
-                            </tr>
-                            <tr>
-                                <th> Profit: </th>
-                                <td> {data.profit} </td>
-                            </tr>
-                            <tr>
-                                <th> Rating: </th>
-                                <td> {data.rating} </td>
-                            </tr>
-                            <tr>
-                                <th> Type: </th>
-                                <td> {data.casino_type.data.attributes.name} </td>
-                            </tr>
-                            {data.casino_providers ? <tr>
-                                <th> Providers: </th>
-                                <td> {data.casino_providers.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.name}</span>))} </td>
-                            </tr> : null}
-                            <tr>
-                                <th>Licences: </th>
-                                <td>{data.licence.data.attributes.name}</td>
-                            </tr>
-                            {data.payment_methods ? <tr>
-                                <th>Paymenth Methods:</th>
-                                <td>{data.payment_methods.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.name}</span>))}</td>
-                            </tr> : null}
-                            {data.languages.data.length > 0 ? <tr>
-                                <th>Languages: </th>
-                                <td>{data.languages.data.map((i: any, ind: number) => (<span key={ind}>{i.attributes.name}</span>))}</td>
-                            </tr> : null}
-                            {data.countries.data.length > 0 ? <tr>
-                                <th>GEO:</th>
-                                <td>{data.countries.data.map((i: any, ind: number) => (
-                                    <span key={ind}>{i.attributes.code}</span>
-                                ))}</td>
-                            </tr> : null}
-                            {data.currencies.data.length > 0 ? <tr>
-                                <th>Currencies:</th>
-                                <td>{data.currencies.data.map((i: any, ind: number) => (<span key="ind">{i.attributes.code}</span>))}</td>
-                            </tr> : null}
-                            {data.bonuse_type ? <tr>
-                                <th>Bonuses: </th>
-                                <td>{data.bonuse_type.data.attributes.name}</td>
-                            </tr> : null}
-                            {data.game_types.length > 0 ? <tr>
-                                <th>Games: </th>
-                                <td>{data.game_types.data.map((i: any, ind: number) => (<span key={ind}>{i.name}</span>))}</td>
-                            </tr> : null}
-                        </table>
-                    </div>
-
-                    <div dangerouslySetInnerHTML={{
-                        __html: marked(data.content || ''),
-                    }} className={styles.casino_content}
-                    />
-                    <Link href="/casinos">Go Back</Link>
+                    </section>
+                    <aside>
+                        <Sidebar posts={all_posts} casinos={all_casinos} />
+                    </aside>
                 </article>
             </Layout>
         </>
@@ -141,18 +82,31 @@ export async function getStaticProps({ params }: any) {
         `${process.env.NEXT_PUBLIC_API_URL}/casinos?filters[slug][$eq]=${slug}&populate=*`
     );
 
-    if (!res.ok) {
+    const posts = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
+    );
+
+    const casinos = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/casinos`
+    );
+
+    if (!res.ok || !posts.ok) {
         return {
             notFound: true,
         };
     }
 
     const data = await res.json();
+    const get_posts = await posts.json();
+    const get_casinos = await casinos.json();
     const casino = data.data[0];
-
+    const all_posts = get_posts.data;
+    const all_casinos = get_casinos.data;
     return {
         props: {
             casino,
+            all_posts,
+            all_casinos,
         },
     };
 }

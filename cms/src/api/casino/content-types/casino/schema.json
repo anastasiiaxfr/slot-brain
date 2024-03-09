@@ -154,6 +154,31 @@
         }
       },
       "type": "decimal"
+    },
+    "Builder": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "builder.markdown",
+        "builder.props-and-cons",
+        "builder.quote",
+        "builder.providers",
+        "builder.bonuses",
+        "builder.game-table",
+        "builder.accordion",
+        "builder.feature-list",
+        "builder.link-list"
+      ]
+    },
+    "apps": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::app.app",
+      "inversedBy": "casinos"
     }
   }
 }
