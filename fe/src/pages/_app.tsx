@@ -4,7 +4,6 @@ import '@/styles/sass/main.sass'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Hydrate } from '@tanstack/react-query'
 
 
 import { Inter } from 'next/font/google'

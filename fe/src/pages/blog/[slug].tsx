@@ -82,12 +82,9 @@ export default function BlogSinglePage({ current_post, all_posts, all_casinos }:
                             {current_post.attributes?.author ? <Author data={current_post.attributes.author} /> : null}
                         </section>
                         <aside>
-                            <Sidebar posts={all_posts} casinos={all_casinos} />
+                            <Sidebar posts={all_posts} casinos={all_casinos} data={current_post.attributes} />
                         </aside>
                     </article>
-
-
-
 
                     <article>
                         <h2 className="section_header">

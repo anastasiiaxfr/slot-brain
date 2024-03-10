@@ -1,4 +1,3 @@
-import qs from 'qs'
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
 import Link from "next/link"

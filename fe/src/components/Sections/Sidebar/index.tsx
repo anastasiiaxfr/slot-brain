@@ -2,8 +2,9 @@ import styles from "./styles.module.sass"
 
 import Link from "next/link"
 import Card from "@/components/Sections/Casino/Card-small"
+import Share from "../../Share"
 
-export default function Sidebar({ posts, casinos }: any) {
+export default function Sidebar({ posts, casinos, data }: any) {
     return (
         <aside className={styles.sidebar}>
 
@@ -21,10 +22,15 @@ export default function Sidebar({ posts, casinos }: any) {
 
                 <div className={styles.block_links}>
                     {posts.slice(0, 10).map((i: any, ind: number) => (
-                        <Link href={i.attributes.slug} key={ind}>{i.attributes.title}</Link>
+                        <Link href={`/blog/${i.attributes.slug}`} key={ind}>{i.attributes.title}</Link>
                     ))}
                 </div>
 
+            </section>
+
+            <section>
+                <h3>Share</h3>
+                <Share copyUrl={data.slug} copyTitle={data.title} />
             </section>
 
         </aside>

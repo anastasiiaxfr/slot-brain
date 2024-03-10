@@ -52,3 +52,5 @@ export const order = [
     { value: 'asc', label: 'ASC' },
     { value: 'desc', label: 'DESC' },
 ]
+
+export default () => null;

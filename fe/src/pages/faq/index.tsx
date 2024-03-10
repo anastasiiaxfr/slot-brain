@@ -38,6 +38,21 @@ const og = [
 const FaqParentPage = ({ data }: any) => {
     const faq = data.attributes
 
+    const faqs = faq.faq.slice(0, 10).map((item: any) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.answer
+        }
+    }));
+
+    const schema = {
+        "@context": "http://schema.org/",
+        "@type": "FAQPage",
+        "mainEntity": faqs
+    }
+
     return (
         <>
             <Seo
@@ -76,6 +91,12 @@ const FaqParentPage = ({ data }: any) => {
                     </dl>
 
                 </article>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(schema),
+                    }}
+                ></script>
             </Layout >
         </>
     )

@@ -31,3 +31,5 @@ export const hero = {
     descritption: "Description",
     img: HeroImg
 }
+
+export default () => null;

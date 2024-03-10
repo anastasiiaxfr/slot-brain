@@ -45,10 +45,8 @@ const GamesParentPage = ({ games }: any) => {
                             <Card data={i.attributes} key={ind} />
                         ))}
                     </div>
-                </article>
 
-                <section className={styles.cards_content}>
-                    <div className="container">
+                    <section className={styles.cards_content}>
                         <p>
                             Red Ventures (includes “us,” “we,” or “our”) is a portfolio of brands and digital platforms (such as mobile and/or TV applications) that connect people with information to help make some of life’s most important decisions. Some examples of Red Ventures’ brands are Allconnect, Bankrate, CNET, MyMove, Online MBA, and The Points Guy. For the purposes of this Privacy Policy, the websites, apps, and products provided by Red Ventures will be referred to as the “Services.” Certain Red Ventures Services have different privacy policies (such as our Healthline Media Sites and Services in Brazil), you should check each Service for its specific policy before use.
                         </p>
@@ -58,8 +56,10 @@ const GamesParentPage = ({ games }: any) => {
                         <p>
                             In some circumstances, a Red Ventures company may receive or process Personal Information on behalf of a client. In those situations, the privacy policy of the client will apply.
                         </p>
-                    </div>
-                </section>
+                    </section>
+                </article>
+
+
             </Layout>
         </>
     )

@@ -15,7 +15,7 @@ a
         margin-top: var(--gap)
         margin-bottom: var(--gap)
 
-    & > *:first-of-type
+    & > *:first-child
         margin-top: 0
       
     &-sidebar
@@ -24,6 +24,9 @@ a
 
         & > section
             flex: 1
+
+            & > div:first-child > *:first-child
+                margin-top: 0
 
         aside
             max-width: 300px

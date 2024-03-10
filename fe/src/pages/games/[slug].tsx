@@ -1,10 +1,13 @@
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
-import { marked } from 'marked'
-import styles from "./styles.module.sass"
 
 import Builder from "@/components/Builder"
 import Sidebar from "@/components/Sections/Sidebar"
+
+import Games from "./Games"
+import Hero from "./Hero"
+import ArrowIcon from "@/assets/icons/arr-rt.svg"
+
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -32,9 +35,9 @@ const og = [
     { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
 ]
 
-export default function GamesSinglePage({ game, all_casinos, all_posts }: any) {
+export default function GamesSinglePage({ game, all_games, all_casinos, all_posts }: any) {
     //console.log(game.attributes);
-    const data = game.attributes;
+    const data = game?.attributes;
 
     return (
         <>
@@ -44,16 +47,25 @@ export default function GamesSinglePage({ game, all_casinos, all_posts }: any) {
             />
 
             <Layout>
-                <article className="container page page-sidebar">
-
-                    <section className="page-article">
-                        <Builder data={data} />
+                <Hero casinos={all_casinos} games={all_games} data={data} />
+                <article className="container page page-article">
+                    <article className="page-sidebar">
+                        <section className="">
+                            <Builder data={data} />
+                        </section>
+                        <aside>
+                            <Sidebar posts={all_posts} casinos={all_casinos} data={data} />
+                        </aside>
+                    </article>
+                    <section>
+                        <h2 className="section_header">
+                            <span>Similar Games You Might Like</span>
+                            <ArrowIcon width="24" />
+                        </h2>
+                        <Games data={all_games} />
                     </section>
-                    <aside>
-                        <Sidebar posts={all_posts} casinos={all_casinos} />
-                    </aside>
-
                 </article>
+
             </Layout>
         </>
     )
@@ -79,6 +91,10 @@ export async function getStaticProps({ params }: any) {
         `${process.env.NEXT_PUBLIC_API_URL}/games?filters[slug][$eq]=${slug}&populate=*`
     );
 
+    const games = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/games?populate=*`
+    );
+
     const posts = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/blogs?populate=*`
     );
@@ -96,15 +112,18 @@ export async function getStaticProps({ params }: any) {
     const data = await res.json();
     const get_posts = await posts.json();
     const get_casinos = await casinos.json();
+    const get_games = await games.json();
     const game = data.data[0];
     const all_posts = get_posts.data;
     const all_casinos = get_casinos.data;
+    const all_games = get_games.data;
 
     return {
         props: {
             game,
             all_posts,
             all_casinos,
+            all_games
         },
     };
 }

@@ -83,7 +83,7 @@ export default function BonusesSingelPage({ bonus, all_bonuses, all_posts, all_c
 
                         </section>
                         <aside>
-                            <Sidebar posts={all_posts} casinos={all_casinos} />
+                            <Sidebar posts={all_posts} casinos={all_casinos} data={data} />
                         </aside>
                     </article>
 

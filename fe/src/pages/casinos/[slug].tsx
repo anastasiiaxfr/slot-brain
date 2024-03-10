@@ -51,7 +51,7 @@ export default function CasinosSinglePage({ casino, all_casinos, all_posts }: an
                         <Builder data={data} />
                     </section>
                     <aside>
-                        <Sidebar posts={all_posts} casinos={all_casinos} />
+                        <Sidebar posts={all_posts} casinos={all_casinos} data={data} />
                     </aside>
                 </article>
             </Layout>

@@ -43,5 +43,4 @@ export async function fetchBlog(params?: any) {
 }
 
 
-
-
+export default () => null

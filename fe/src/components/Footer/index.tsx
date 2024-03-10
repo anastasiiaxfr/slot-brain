@@ -8,17 +8,17 @@ import ImIcon from "@/assets/icons/im.svg"
 
 const soc = [
     {
-        icon: <TmIcon />,
+        icon: <TmIcon width="18" height="18" />,
         title: "telegram",
         url: "/"
     },
     {
-        icon: <ImIcon />,
+        icon: <ImIcon width="18" height="18" />,
         title: "instagram",
         url: "/"
     },
     {
-        icon: <FbIcon />,
+        icon: <FbIcon width="18" height="18" />,
         title: "facebook",
         url: "/"
     },

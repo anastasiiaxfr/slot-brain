@@ -42,6 +42,5 @@ export async function fetchCasino(params?: any) {
     return json.data
 }
 
-
-
+export default () => null;
 

@@ -1,5 +1,4 @@
 import Card from "@/components/Sections/Blog/Card"
-import styles from "./styles.module.sass"
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -39,7 +38,7 @@ export default function Posts({ data }: any) {
                 }}
             >
 
-                {data.map((i: any, ind: number) => (<SwiperSlide key={ind} ><Card data={i.attributes} slug={i.attributes.slug}></Card></SwiperSlide>))}
+                {data?.map((i: any, ind: number) => (<SwiperSlide key={ind} ><Card data={i.attributes} slug={i.attributes.slug}></Card></SwiperSlide>))}
 
             </Swiper>
 

@@ -42,6 +42,5 @@ export async function fetchBonuse(params?: any) {
     return json.data
 }
 
-
-
+export default () => null;
 

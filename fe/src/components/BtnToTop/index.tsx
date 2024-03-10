@@ -6,7 +6,7 @@ export default function BtnToTop() {
 
     useEffect(() => {
         const handleScroll = () => {
-            console.log('Scrolling...', window.scrollY);
+            //console.log('Scrolling...', window.scrollY);
             setIsVisible(window.scrollY > 100);
         };
 
