@@ -35,7 +35,7 @@ export default function Slider({ data }: any) {
             }}
         >
 
-            {data?.map((i: any, ind: number) => (<SwiperSlide key={ind} ><Card data={i.attributes} slug={i.attributes.slug}></Card></SwiperSlide>))}
+            {data?.map((i: any, ind: number) => (<SwiperSlide key={ind} ><Card data={i.attributes} slug={`/games/${i.attributes.slug}`}></Card></SwiperSlide>))}
 
         </Swiper>
     )

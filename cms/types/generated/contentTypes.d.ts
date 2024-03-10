@@ -1860,7 +1860,7 @@ export interface ApiGameGame extends Schema.CollectionType {
   info: {
     singularName: 'game';
     pluralName: 'games';
-    displayName: 'Game';
+    displayName: '[1] Game';
     description: '';
   };
   options: {

@@ -2,9 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import styles from "./styles.module.sass"
 
-export default function Card({ data, card }: any) {
+export default function Card({ data, card, slug }: any) {
     return (
-        <Link className={styles.card} href={data ? 'games/' + data.slug : card.url}>
+        <Link className={styles.card} href={data ? slug : card.url}>
             <div className={styles.card_wrap}>
                 <Image src={data?.img?.data?.attributes?.url || card.img} alt={data?.title || card.title} width={400} height={200} />
             </div>

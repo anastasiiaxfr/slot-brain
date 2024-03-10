@@ -30,7 +30,7 @@ export default function Sidebar({ posts, casinos, data }: any) {
 
             <section>
                 <h3>Share</h3>
-                <Share copyUrl={data.slug} copyTitle={data.title} />
+                <Share copyUrl={`${process.env.NEXT_PUBLIC_URL}/${data.slug}`} copyTitle={data.title} />
             </section>
 
         </aside>

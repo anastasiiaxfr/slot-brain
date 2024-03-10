@@ -42,7 +42,7 @@ const GamesParentPage = ({ games }: any) => {
                 <article className={`container page ${styles.cards_wrap}`}>
                     <div className={styles.cards}>
                         {games.data.map((i: any, ind: number) => (
-                            <Card data={i.attributes} key={ind} />
+                            <Card data={i.attributes} key={ind} slug={`/games/${i.attributes.slug}`} />
                         ))}
                     </div>
 
