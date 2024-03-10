@@ -8,36 +8,34 @@ import Games from "./Games"
 import Hero from "./Hero"
 import ArrowIcon from "@/assets/icons/arr-rt.svg"
 
-
-const seo = {
-    metaTitle: 'Lorem Ipsum',
-    metaHeading: 'Lorem Ipsum',
-    metaDescription:
-        'Lorem Ipsum',
-    metaImg: `${process.env.NEXT_PUBLIC_HOST}/ua/og_600x300.jpg`,
-    metaURL: `${process.env.NEXT_PUBLIC_HOST}/ua/blog/`,
-}
-
-const og = [
-    { property: 'og:type', content: 'article' },
-    { property: 'og:title', content: '' },
-    { property: 'og:description', content: '' },
-    {
-        property: 'og:site_name',
-        content: '',
-    },
-    { property: 'og:url', content: '' },
-    { property: 'og:image', content: `${process.env.NEXT_PUBLIC_HOST}/ua/og_600x300.jpg` },
-    { property: 'og:image:width', content: '600' },
-    { property: 'og:image:height', content: '300' },
-    { property: 'og:locale', content: 'uk' },
-    { property: 'og:section', content: 'Blog' },
-    { property: 'og:published_time', content: '2020-07-21T08:17:33+01:00' },
-]
-
 export default function GamesSinglePage({ game, all_games, all_casinos, all_posts }: any) {
     //console.log(game.attributes);
     const data = game?.attributes;
+
+    const seo = {
+        metaTitle: data.title,
+        metaDescription: "Slot Brain | Yet another cool game",
+        metaImg: data.img?.data?.attributes?.url,
+        metaURL: data.slug,
+    }
+
+    const og = [
+        { property: 'og:type', content: 'article' },
+        { property: 'og:title', content: seo.metaTitle },
+        { property: 'og:description', content: seo.metaDescription },
+        {
+            property: 'og:site_name',
+            content: 'Slot Brain',
+        },
+        { property: 'og:url', content: seo.metaURL },
+        { property: 'og:image', content: seo.metaImg },
+        { property: 'og:image:width', content: '600' },
+        { property: 'og:image:height', content: '300' },
+        { property: 'og:locale', content: 'en' },
+        { property: 'og:section', content: 'Blog' },
+        { property: 'og:published_time', content: data.publishedAt },
+    ]
+
 
     return (
         <>

@@ -7,8 +7,8 @@ const seo = {
     metaHeading: 'Lorem Ipsum',
     metaDescription:
         'Lorem Ipsum',
-    metaImg: `${process.env.NEXT_PUBLIC_HOST}/ua/og_600x300.jpg`,
-    metaURL: `${process.env.NEXT_PUBLIC_HOST}/ua/blog/`,
+    metaImg: `${process.env.NEXT_PUBLIC_URL}/600x300.jpg`,
+    metaURL: `${process.env.NEXT_PUBLIC_HOST}/`,
 }
 
 const og = [
@@ -20,7 +20,7 @@ const og = [
         content: '',
     },
     { property: 'og:url', content: '' },
-    { property: 'og:image', content: `${process.env.NEXT_PUBLIC_HOST}/ua/og_600x300.jpg` },
+    { property: 'og:image', content: `${process.env.NEXT_PUBLIC_URL}/600x300.jpg` },
     { property: 'og:image:width', content: '600' },
     { property: 'og:image:height', content: '300' },
     { property: 'og:locale', content: 'uk' },

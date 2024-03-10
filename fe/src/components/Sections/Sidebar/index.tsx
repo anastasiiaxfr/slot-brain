@@ -3,8 +3,11 @@ import styles from "./styles.module.sass"
 import Link from "next/link"
 import Card from "@/components/Sections/Casino/Card-small"
 import Share from "../../Share"
+import { useRouter } from 'next/router'
 
 export default function Sidebar({ posts, casinos, data }: any) {
+    const router = useRouter()
+
     return (
         <aside className={styles.sidebar}>
 
@@ -30,7 +33,7 @@ export default function Sidebar({ posts, casinos, data }: any) {
 
             <section>
                 <h3>Share</h3>
-                <Share copyUrl={`${process.env.NEXT_PUBLIC_URL}/${data.slug}`} copyTitle={data.title} />
+                <Share copyUrl={`${process.env.NEXT_PUBLIC_URL}${router.asPath}`} copyTitle={data.title} />
             </section>
 
         </aside>

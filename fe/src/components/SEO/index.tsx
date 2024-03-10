@@ -8,7 +8,7 @@ interface Props {
 const Seo = ({ og, seo }: Props) => {
     return (
         <Head>
-            <title key="title">{seo?.metaHeading}</title>
+            <title key="title">{seo?.metaTitle}</title>
             <meta
                 name="description"
                 content={seo?.metaDescription}
@@ -16,7 +16,7 @@ const Seo = ({ og, seo }: Props) => {
             />
             <meta
                 itemProp="name"
-                content={seo?.metaHeading}
+                content={seo?.metaTitle}
                 key="itemPropname"
             />
             <meta

@@ -74,21 +74,24 @@ export default function Share({ copyUrl, copyTitle }: any) {
 
 
     return (
-        <div className={styles.share}>
-            {socialNetworkButtons.map((i: any, ind: number) => {
-                set_url(i.title)
-                return (
-                    <Link
-                        href={target_url}
-                        target="_blank"
-                        key={ind}
-                    >
-                        {i.icon}
-                    </Link>)
-            })}
-            <button onClick={handleCopyClick}>
-                <IconShare width="20" height="20" />
-            </button>
-        </div >
+        <>
+            <div className={styles.share}>
+                {socialNetworkButtons.map((i: any, ind: number) => {
+                    set_url(i.title)
+                    return (
+                        <Link
+                            href={target_url}
+                            target="_blank"
+                            key={ind}
+                        >
+                            {i.icon}
+                        </Link>)
+                })}
+                <button onClick={handleCopyClick}>
+                    <IconShare width="20" height="20" />
+                </button>
+            </div >
+        </>
+
     )
 }
