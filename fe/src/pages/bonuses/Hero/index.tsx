@@ -1,10 +1,14 @@
 import styles from "./styles.module.sass"
 import IconStar from "@/assets/icons/star.svg"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
-export default function Hero({ data }: any) {
+export default function Hero({ data, breadcrumbs }: any) {
     return (
         <div className={styles.bonus}>
+
             <div className="container">
+                <Breadcrumbs data={breadcrumbs} />
+
                 <h1>Bonus</h1>
 
                 <div className={styles.bonus_header}>

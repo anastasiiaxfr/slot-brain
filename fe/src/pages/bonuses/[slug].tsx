@@ -42,6 +42,21 @@ export default function BonusesSingelPage({ bonus, all_bonuses, all_posts, all_c
         { property: 'og:published_time', content: data.publishedAt },
     ]
 
+
+    const breadcrumbs = {
+        current: {
+            title: data.title,
+            slug: data.slug,
+        },
+        parent: [
+            {
+                title: "Bonuses",
+                slug: "/bonuses/"
+            }
+        ]
+    }
+
+
     return (
         <>
             <Seo
@@ -51,7 +66,7 @@ export default function BonusesSingelPage({ bonus, all_bonuses, all_posts, all_c
 
             <Layout>
                 <section className="">
-                    <Hero data={data} />
+                    <Hero data={data} breadcrumbs={breadcrumbs} />
                 </section>
 
 

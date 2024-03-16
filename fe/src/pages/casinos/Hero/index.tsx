@@ -3,11 +3,15 @@ import Image from "next/image"
 import Link from "next/link"
 
 import IconStar from "@/assets/icons/star.svg"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
-export default function Hero({ data }: any) {
+export default function Hero({ data, breadcrumbs }: any) {
     //console.log(data)
     return (
         <section className={styles.hero}>
+            <div className="container">
+                <Breadcrumbs data={breadcrumbs} />
+            </div>
             <div className="container">
                 {data?.thumbnail.data && <div className={styles.hero_img}>
                     <Image src={data?.thumbnail?.data?.attributes?.url} alt={data?.title} height={150} width={300} />

@@ -36,6 +36,18 @@ export default function GamesSinglePage({ game, all_games, all_casinos, all_post
         { property: 'og:published_time', content: data.publishedAt },
     ]
 
+    const breadcrumbs = {
+        current: {
+            title: data.title,
+            slug: data.slug,
+        },
+        parent: [
+            {
+                title: "Games",
+                slug: "/games/"
+            }
+        ]
+    }
 
     return (
         <>
@@ -45,7 +57,7 @@ export default function GamesSinglePage({ game, all_games, all_casinos, all_post
             />
 
             <Layout>
-                <Hero casinos={all_casinos} games={all_games} data={data} />
+                <Hero casinos={all_casinos} games={all_games} data={data} breadcrumbs={breadcrumbs} />
                 <article className="container page page-article">
                     <article className="page-sidebar">
                         <section className="">

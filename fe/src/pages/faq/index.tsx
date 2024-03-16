@@ -1,13 +1,12 @@
 import qs from 'qs'
-import Link from "next/link"
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
-import { marked } from 'marked'
-import FaqBanner from "@/assets/img/faq.jpg"
 import ArrIcon from "@/assets/icons/arr-r.svg"
 import { Disclosure } from '@headlessui/react'
 
 import styles from "./styles.module.sass"
+
+import Faq from "@/components/Faq"
 
 const seo = {
     metaTitle: 'Lorem Ipsum',
@@ -61,32 +60,12 @@ const FaqParentPage = ({ data }: any) => {
             />
 
             <Layout>
-                <article className="container page">
+                <article className="container page page-without-breadcrumbs">
                     <h1>{faq.title}</h1>
 
                     <dl className={styles.faq}>
                         {faq.faq.map((i: any, ind: number) => (
-                            <Disclosure as="div" key={ind} className="">
-                                {({ open }) => (
-                                    <>
-                                        <dt>
-                                            <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
-                                                <span className="text-base font-semibold leading-7">{i.question}</span>
-                                                <span className="">
-                                                    {open ? (
-                                                        <ArrIcon aria-hidden="true" />
-                                                    ) : (
-                                                        <ArrIcon aria-hidden="true" />
-                                                    )}
-                                                </span>
-                                            </Disclosure.Button>
-                                        </dt>
-                                        <Disclosure.Panel as="dd" className="">
-                                            <p className="text-base leading-7 text-gray-600">{i.answer}</p>
-                                        </Disclosure.Panel>
-                                    </>
-                                )}
-                            </Disclosure>
+                            <Faq data={i} key={ind} />
                         ))}
                     </dl>
 

@@ -3,7 +3,7 @@ a
         color: inherit
 
 .page
-    margin-top: var(--gapXlg)
+    margin-top: var(--gapMd)
     margin-bottom: var(--gapXlg)
     color: $grey3
 
@@ -18,6 +18,9 @@ a
     & > *:first-child
         margin-top: 0
       
+    &-without-breadcrumbs
+        margin-top: var(--gapXlg)
+
     &-sidebar
         +flex(flex, flex-start, flex-start, wrap)
         gap: var(--gapLg)

@@ -40,7 +40,7 @@ const ResponsibleGamingPage = ({ data }: any) => {
                 seo={seo}
             />
             <Layout>
-                <article className="container page">
+                <article className="container page page-without-breadcrumbs">
                     <h1>{info.title}</h1>
                     <div dangerouslySetInnerHTML={{
                         __html: marked(info.content || ''),

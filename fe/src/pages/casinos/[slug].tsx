@@ -2,7 +2,6 @@ import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
 import Builder from "@/components/Builder"
 
-
 import Hero from "./Hero"
 import Sidebar from "@/components/Sections/Sidebar"
 
@@ -36,6 +35,19 @@ export default function CasinosSinglePage({ casino, all_casinos, all_posts }: an
         { property: 'og:published_time', content: data.publishedAt },
     ]
 
+    const breadcrumbs = {
+        current: {
+            title: data.title,
+            slug: data.slug,
+        },
+        parent: [
+            {
+                title: "Casino",
+                slug: "/casinos/"
+            }
+        ]
+    }
+
 
     return (
         <>
@@ -45,8 +57,9 @@ export default function CasinosSinglePage({ casino, all_casinos, all_posts }: an
             />
 
             <Layout>
-                <Hero data={data} />
+                <Hero data={data}  />
                 <article className="container page page-sidebar">
+
                     <section className="page-article">
                         <Builder data={data} />
                     </section>

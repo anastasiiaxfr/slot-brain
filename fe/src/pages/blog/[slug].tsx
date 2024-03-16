@@ -12,6 +12,8 @@ import Sidebar from "../../components/Sections/Sidebar"
 import Author from "@/components/Authors"
 import Posts from "./Posts"
 
+import Breadcrumbs from "@/components/Breadcrumbs"
+
 import styles from "./styles.module.sass"
 
 
@@ -41,11 +43,28 @@ export default function BlogSinglePage({ current_post, all_posts, all_casinos }:
         { property: 'og:published_time', content: current_post.attributes.publishedAt },
     ]
 
+    const breadcrumbs = {
+        current: {
+            title: current_post.attributes.title,
+            slug: current_post.attributes.slug,
+        },
+        parent: [
+            {
+                title: "News",
+                slug: "/blog/"
+            }
+        ]
+    }
+
+
     return (
         <>
             <Seo og={og} seo={seo} />
             <Layout>
                 <article className="container page page-single">
+                    <Breadcrumbs data={breadcrumbs} />
+
+
                     {current_post.attributes.img?.data?.attributes?.url ? <div className={styles.post_img}>
                         <Image src={current_post.attributes.img?.data?.attributes?.url} alt={current_post.attributes.title} height={400} width={800} />
                         <div className={styles.post_info}>

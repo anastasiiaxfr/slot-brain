@@ -3,7 +3,6 @@ import qs from 'qs'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { fetchBonuses, shortBonusesPopulateParams } from './api'
 
-import Link from "next/link"
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
 import Hero from "@/components/Sections/Hero"

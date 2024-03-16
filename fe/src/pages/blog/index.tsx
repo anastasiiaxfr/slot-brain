@@ -9,6 +9,8 @@ import Hero from "@/components/Sections/Hero"
 
 import Card from "@/components/Sections/Blog/Card"
 
+import Breadcrumbs from "@/components/Breadcrumbs"
+
 import styles from "./styles.module.sass"
 
 import { seo, og, hero } from "./constants"
@@ -19,6 +21,13 @@ const BlogParentPage = ({ blogs }: any) => {
     const filteredPosts = blogs.data.filter(
         (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
+
+    const breadcrumbs = {
+        current: {
+            title: hero.title,
+            slug: '/blog/',
+        }
+    }
 
     return (
         <>
@@ -31,6 +40,8 @@ const BlogParentPage = ({ blogs }: any) => {
                 <Hero data={hero} setSearchValue={setSearchValue} search="Search by news title" />
 
                 <article className="container page">
+
+                    <Breadcrumbs data={breadcrumbs} />
 
                     {/* <section className={styles.blog_section}>
                         <h2>Category Name</h2>

@@ -3,11 +3,13 @@ import Image from "next/image"
 import Link from "next/link"
 
 import Sidebar from "../Sidebar"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
-export default function Header({ data, casinos, games }: any) {
+export default function Header({ data, casinos, games, breadcrumbs }: any) {
     return (
         <section className={styles.hero}>
             <div className="container">
+                <Breadcrumbs data={breadcrumbs} />
 
                 <div className={styles.hero_demo}>
                     <div className={styles.hero_content}>
