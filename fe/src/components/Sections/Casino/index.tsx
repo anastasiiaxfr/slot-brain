@@ -3,7 +3,10 @@ import styles from "./styles.module.sass"
 import casinos from "./constant"
 import Card from "./Card-default"
 
-export default function Casino() {
+export default function Casino({ searchValue }: any) {
+    const filteredPosts = casinos.filter(
+        (el: any) => el.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
     return (
         <section className="section">
             <div className="container">
@@ -15,7 +18,7 @@ export default function Casino() {
                 </p>
 
                 <div className={styles.cards}>
-                    {casinos.map((i: any, ind: number) => (
+                    {filteredPosts.map((i: any, ind: number) => (
                         <Card data={i} key={ind} />
                     ))}
                 </div>

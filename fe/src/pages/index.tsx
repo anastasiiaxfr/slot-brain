@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import Layout from "@/components/Layout"
 
 import Hero from "@/components/Sections/Hero/Slider"
@@ -37,6 +39,8 @@ const og = [
 ]
 
 export default function Home() {
+  const [searchValue, setSearchValue] = useState("")
+
   return (
     <>
       <Seo
@@ -45,8 +49,8 @@ export default function Home() {
       />
       <Layout>
         <article className="">
-          <Hero />
-          <Casino />
+          <Hero setSearchValue={setSearchValue} search="Search by 1000+ casinos" />
+          <Casino searchValue={searchValue} />
           <Bonuses />
           <Games />
           <Blog />

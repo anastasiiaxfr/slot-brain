@@ -4,7 +4,7 @@ import Link from "next/link"
 import Search from "@/components/Search"
 
 
-export default function Hero({ data }: any) {
+export default function Hero({ data, search, setSearchValue }: any) {
     return (
         <section className={`section ${styles.hero}`}>
             <div className={styles.hero_slide}>
@@ -27,7 +27,7 @@ export default function Hero({ data }: any) {
                 </div>
             </div>
 
-            <Search placeholder="Search for 5000 games and games providers" type="lg" />
+            <Search placeholder={search} setSearchValue={setSearchValue} type="lg" />
         </section>
     )
 }

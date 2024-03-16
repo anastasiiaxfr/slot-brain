@@ -1,3 +1,4 @@
+import { useState } from "react"
 import qs from 'qs'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { fetchGames, shortPopulateParams } from './api'
@@ -12,6 +13,12 @@ import styles from "./styles.module.sass"
 
 
 const GamesParentPage = ({ games }: any) => {
+    const [searchValue, setSearchValue] = useState("")
+
+    const filteredCards = games.data.filter(
+        (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
+
     return (
         <>
             <Seo
@@ -20,7 +27,7 @@ const GamesParentPage = ({ games }: any) => {
             />
 
             <Layout>
-                <Hero data={hero} />
+                <Hero data={hero} setSearchValue={setSearchValue} search="Search by Game Name" />
                 <section className="container">
                     <div className="filters">
                         <div>
@@ -41,7 +48,7 @@ const GamesParentPage = ({ games }: any) => {
                 </section>
                 <article className={`container page ${styles.cards_wrap}`}>
                     <div className={styles.cards}>
-                        {games.data.map((i: any, ind: number) => (
+                        {filteredCards.map((i: any, ind: number) => (
                             <Card data={i.attributes} key={ind} slug={`/games/${i.attributes.slug}`} />
                         ))}
                     </div>

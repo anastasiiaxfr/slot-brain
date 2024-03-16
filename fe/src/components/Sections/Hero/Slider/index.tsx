@@ -6,7 +6,7 @@ import Search from "@/components/Search"
 import slides from "./constants"
 
 
-export default function Hero() {
+export default function Hero({ search = "Search for 5000 games and games providers", setSearchValue }: any) {
     return (
         <section className={`section ${styles.hero}`}>
             {slides.map((i: any, ind: number) => (
@@ -30,7 +30,8 @@ export default function Hero() {
                     </div>
                 </div>
             ))}
-            <Search placeholder="Search for 5000 games and games providers" type="lg" />
+            {search}
+            <Search placeholder={search} setSearchValue={setSearchValue} type="lg" />
         </section>
     )
 }

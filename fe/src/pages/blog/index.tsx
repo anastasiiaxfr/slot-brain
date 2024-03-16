@@ -1,3 +1,4 @@
+import { useState } from "react"
 import qs from 'qs'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { fetchBlogs, shortBlogsPopulateParams } from './api'
@@ -13,6 +14,11 @@ import styles from "./styles.module.sass"
 import { seo, og, hero } from "./constants"
 
 const BlogParentPage = ({ blogs }: any) => {
+    const [searchValue, setSearchValue] = useState("")
+
+    const filteredPosts = blogs.data.filter(
+        (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
 
     return (
         <>
@@ -22,7 +28,7 @@ const BlogParentPage = ({ blogs }: any) => {
             />
 
             <Layout>
-                <Hero data={hero} />
+                <Hero data={hero} setSearchValue={setSearchValue} search="Search by news title" />
 
                 <article className="container page">
 
@@ -41,7 +47,7 @@ const BlogParentPage = ({ blogs }: any) => {
                         {/* <h2>Editor Choise</h2> */}
 
                         <div className={styles.blog_sections_all}>
-                            {blogs.data.slice(0, blogs.data.length).map((i: any, ind: number) => (
+                            {filteredPosts.slice(0, blogs.data.length).map((i: any, ind: number) => (
                                 <Card key={ind} data={i.attributes} slug={`blog/${i.attributes.slug}`} />
                             ))}
                         </div>

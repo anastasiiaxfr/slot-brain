@@ -1,3 +1,4 @@
+import { useState } from "react"
 import qs from 'qs'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { fetchBonuses, shortBonusesPopulateParams } from './api'
@@ -13,6 +14,12 @@ import { og, seo, hero, filter_by_provider, filter_by_type, order } from "./cons
 
 const BonusesParentPage = ({ bonuses }: any) => {
     //console.log(bonuses)
+    const [searchValue, setSearchValue] = useState("")
+
+    const filteredCards = bonuses.data.filter(
+        (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || el.attributes.bonuse_type.data.attributes.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
+
     return (
         <>
             <Seo
@@ -21,7 +28,7 @@ const BonusesParentPage = ({ bonuses }: any) => {
             />
 
             <Layout>
-                <Hero data={hero} />
+                <Hero data={hero} setSearchValue={setSearchValue} search="Search by bonus name or type" />
 
                 <section className="container">
                     <div className="filters">
@@ -52,7 +59,7 @@ const BonusesParentPage = ({ bonuses }: any) => {
 
                 <article className={`container page ${styles.cards_wrap}`}>
                     <div className={styles.cards}>
-                        {bonuses.data.map((i: any, ind: number) => (
+                        {filteredCards.map((i: any, ind: number) => (
                             <Card key={ind} data={i.attributes} />
                         ))}
                     </div>
