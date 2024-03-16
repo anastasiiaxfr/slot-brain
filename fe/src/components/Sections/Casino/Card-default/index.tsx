@@ -7,9 +7,9 @@ import ImgDefault from "@/assets/img/casino/casino_default.jpg"
 export default function Card({ data }: any) {
     //console.log(data)
     return (
-        <Link href={data.slug ? 'casinos/' + data.slug : data.url} className={styles.card}>
+        <Link href={'casinos/' + data.slug} className={styles.card}>
             <div className={styles.card_wrap}>
-                <Image src={data.thumbnail_test ? data.thumbnail_test : data?.thumbnail?.data?.attributes?.url || ImgDefault} alt={data?.title} width={400} height={200} />
+                <Image src={data.thumbnail.data.attributes.url || ImgDefault} alt={data.title} width={400} height={200} />
             </div>
             <div className={styles.card_content}>
                 <div className={styles.card_title}>

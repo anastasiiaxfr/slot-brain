@@ -9,9 +9,9 @@ import styles from "./styles.module.sass"
 
 export default function Card({ data }: any) {
     return (
-        <Link className={styles.card} href="/">
+        <Link className={styles.card} href={"/blog/" + data.slug}>
             <div className={styles.card_wrap}>
-                <Image src={data.img} alt={data.title} />
+                <Image src={data.img.data.attributes.url} alt={data.title} width="600" height="300" />
             </div>
             <div className={styles.card_content}>
                 <div className={styles.card_title}>
@@ -22,16 +22,16 @@ export default function Card({ data }: any) {
                 </div>
                 <div className={styles.card_info}>
                     <span>
-                        <IconPubDate width="16" height="16" />{data.pub_date}
+                        <IconPubDate width="16" height="16" />{new Date(data.publishedAt).toLocaleString().slice(0, 10)}
                     </span>
 
                     <div>
                         <span>
-                            <IconClock width="16" height="16" /> {data.time_read}
+                            <IconClock width="16" height="16" /> {data.read || '5 min'}
                         </span>
-                        <span>
+                        {/* <span>
                             <IconEye width="16" height="16" /> {data.views}
-                        </span>
+                        </span> */}
                     </div>
                 </div>
 

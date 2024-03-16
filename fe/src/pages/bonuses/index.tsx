@@ -29,7 +29,7 @@ const BonusesParentPage = ({ bonuses }: any) => {
             <Layout>
                 <Hero data={hero} setSearchValue={setSearchValue} search="Search by bonus name or type" />
 
-                <section className="container">
+                {/* <section className="container">
                     <div className="filters">
                         <div>
                             <span>Type:</span>
@@ -54,7 +54,7 @@ const BonusesParentPage = ({ bonuses }: any) => {
                             <Select options={filter_by_type} />
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <article className={`container page ${styles.cards_wrap}`}>
                     <div className={styles.cards}>

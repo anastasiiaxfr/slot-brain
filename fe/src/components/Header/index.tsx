@@ -23,7 +23,7 @@ export default function Header() {
                     </div>
 
                     <div className={`${styles.header_action}`}>
-                        <Search type="sm" placeholder="Search" />
+                        {/* <Search type="sm" placeholder="Search" /> */}
 
                         <div className={styles.header_cta}>
                             <Link href="/" className="btn btn-text" data-text="Sign in">Sign in</Link><span>&nbsp;</span>

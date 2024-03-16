@@ -31,7 +31,7 @@ const CasinosParentPage = ({ casinos }: any) => {
                 <Hero data={hero} setSearchValue={setSearchValue} search="Search by Casino Name" />
 
                 <article className={`container page ${styles.cards_wrap}`}>
-                    <Sidebar />
+                    {/* <Sidebar /> */}
                     <section>
 
                         <div className={styles.cards}>

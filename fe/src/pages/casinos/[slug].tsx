@@ -57,7 +57,7 @@ export default function CasinosSinglePage({ casino, all_casinos, all_posts }: an
             />
 
             <Layout>
-                <Hero data={data}  />
+                <Hero data={data} breadcrumbs={breadcrumbs} />
                 <article className="container page page-sidebar">
 
                     <section className="page-article">

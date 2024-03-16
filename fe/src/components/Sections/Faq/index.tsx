@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 
 import Image from "next/image"
 import FaqBanner from "@/assets/img/faq.jpg"
@@ -7,11 +8,33 @@ import styles from "./styles.module.sass"
 
 
 import { Disclosure } from '@headlessui/react'
-import faqs from "./constant"
+import Faq from "@/components/Faq"
 
 
-export default function Faq() {
-    const faq = faqs.slice(0, 10).map((item: any) => ({
+export default function FaqBlock() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const get_faq = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/faq?populate=*`
+                );
+                const faq = await get_faq.json();
+
+                setData(faq.data.attributes.faq);
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+
+    }, []);
+
+
+    const faq = data.slice(0, 10).map((item: any) => ({
         "@type": "Question",
         "name": item.question,
         "acceptedAnswer": {
@@ -38,28 +61,8 @@ export default function Faq() {
 
 
                             <dl className={styles.faq}>
-                                {faqs.map((faq: any, ind: number) => (
-                                    <Disclosure as="div" key={ind} className="">
-                                        {({ open }) => (
-                                            <>
-                                                <dt>
-                                                    <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
-                                                        <span className="text-base font-semibold leading-7">{faq.question}</span>
-                                                        <span className="">
-                                                            {open ? (
-                                                                <ArrIcon aria-hidden="true" />
-                                                            ) : (
-                                                                <ArrIcon aria-hidden="true" />
-                                                            )}
-                                                        </span>
-                                                    </Disclosure.Button>
-                                                </dt>
-                                                <Disclosure.Panel as="dd" className="">
-                                                    <p className="text-base leading-7 text-gray-600">{faq.answer}</p>
-                                                </Disclosure.Panel>
-                                            </>
-                                        )}
-                                    </Disclosure>
+                                {data.slice(0, 7).map((faq: any, ind: number) => (
+                                    <Faq data={faq} key={ind} type="lg" />
                                 ))}
                             </dl>
 
@@ -76,12 +79,12 @@ export default function Faq() {
 
                 </div>
             </section>
-            <script
+            {/* <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify(schema),
                 }}
-            ></script>
+            ></script> */}
         </>
     )
 }

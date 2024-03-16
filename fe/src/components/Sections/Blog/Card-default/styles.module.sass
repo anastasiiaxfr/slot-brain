@@ -15,10 +15,13 @@
             padding-top: 25%
 
     &_content
+        +flex(flex, flex-start, space-between, nowrap, column)
+        flex: 1
+        width: 100%
         padding: var(--gap) var(--gapSm)
 
     &_title
-        margin-bottom: var(--gapXs)
+        margin-bottom: 0
         text-transform: uppercase
         +ft(22, 22*1.4, 400)
 

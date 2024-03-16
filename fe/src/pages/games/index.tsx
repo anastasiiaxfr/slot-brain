@@ -28,7 +28,7 @@ const GamesParentPage = ({ games }: any) => {
 
             <Layout>
                 <Hero data={hero} setSearchValue={setSearchValue} search="Search by Game Name" />
-                <section className="container">
+                {/* <section className="container">
                     <div className="filters">
                         <div>
                             <span>Order By:</span>
@@ -45,7 +45,7 @@ const GamesParentPage = ({ games }: any) => {
                             <Select options={filter_by_type} />
                         </div>
                     </div>
-                </section>
+                </section> */}
                 <article className={`container page ${styles.cards_wrap}`}>
                     <div className={styles.cards}>
                         {filteredCards.map((i: any, ind: number) => (
