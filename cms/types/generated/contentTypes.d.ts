@@ -995,7 +995,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   info: {
     singularName: 'blog';
     pluralName: 'blogs';
-    displayName: 'Blog';
+    displayName: '[4] Blog';
     description: '';
   };
   options: {
@@ -1133,7 +1133,7 @@ export interface ApiBonuseBonuse extends Schema.CollectionType {
   info: {
     singularName: 'bonuse';
     pluralName: 'bonuses';
-    displayName: 'Bonuse';
+    displayName: '[3] Bonuse';
     description: '';
   };
   options: {
@@ -1305,7 +1305,7 @@ export interface ApiCasinoCasino extends Schema.CollectionType {
   info: {
     singularName: 'casino';
     pluralName: 'casinos';
-    displayName: 'Casino';
+    displayName: '[2] Casino';
     description: '';
   };
   options: {

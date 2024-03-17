@@ -5,9 +5,27 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { AppProvider } from "@/context/AppContext";
 
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
+
+
+const API_URL = process.env.STRAPI_URL || "http://localhost:1337";
+
+export const client = new ApolloClient({
+  uri: `${API_URL}/graphql`,
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    mutate: {
+      errorPolicy: "all",
+    },
+    query: {
+      errorPolicy: "all",
+    },
+  },
+});
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -43,7 +61,11 @@ export default function App({ Component, pageProps }: AppProps) {
         ></script>
 
       </Head>
-      <Component {...pageProps} className={`${inter.className}`} />
+      <ApolloProvider client={client}>
+        <AppProvider>
+          <Component {...pageProps} className={`${inter.className}`} />
+        </AppProvider>
+      </ApolloProvider>
     </>
   )
 }

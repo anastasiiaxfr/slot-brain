@@ -4,7 +4,7 @@
   "info": {
     "singularName": "bonuse",
     "pluralName": "bonuses",
-    "displayName": "Bonuse",
+    "displayName": "[3] Bonuse",
     "description": ""
   },
   "options": {
@@ -119,11 +119,12 @@
       "type": "decimal"
     },
     "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true

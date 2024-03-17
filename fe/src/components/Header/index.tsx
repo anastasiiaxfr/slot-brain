@@ -26,8 +26,8 @@ export default function Header() {
                         {/* <Search type="sm" placeholder="Search" /> */}
 
                         <div className={styles.header_cta}>
-                            <Link href="/" className="btn btn-text" data-text="Sign in">Sign in</Link><span>&nbsp;</span>
-                            <Link href="/" className={`btn ${styles.header_btn}`} data-text="Register for free">Register for free</Link>
+                            <Link href="/login" className="btn btn-text" data-text="Sign in">Sign in</Link><span>&nbsp;</span>
+                            <Link href="/register" className={`btn ${styles.header_btn}`} data-text="Register for free">Register for free</Link>
                         </div>
                     </div>
 
