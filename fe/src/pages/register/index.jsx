@@ -24,10 +24,7 @@ export default function Registration() {
       body: JSON.stringify(jsonData),
     };
 
-    const req = await fetch(
-      process.env.STRAPI_URL_REGISTER || "http://127.0.0.1:1337/api/auth/local/register",
-      reqOptions
-    );
+    const req = await fetch(process.env.NEXT_PUBLIC_URL_REGISTER, reqOptions);
     const res = await req.json();
 
     if (res.error) {
@@ -48,7 +45,7 @@ export default function Registration() {
       <article className="container page page-without-breadcrumbs">
         <form onSubmit={register} className={styles.form}>
           <div className={styles.form_row}>
-            <label htmlFor="username" className="block">
+            <label htmlFor="username" className="block" autoComplete="false">
               Username
             </label>
             <input type="text" id="username" name="username" className="block" />

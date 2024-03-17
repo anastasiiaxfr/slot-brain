@@ -22,7 +22,7 @@ export default function Login() {
       body: JSON.stringify(jsonData),
     };
 
-    const req = await fetch(process.env.STRAPI_URL_LOGIN || "http://127.0.0.1:1337/api/auth/local", reqOptions);
+    const req = await fetch(process.env.NEXT_PUBLIC_URL_LOGIN, reqOptions);
     const res = await req.json();
 
     if (res.error) {
