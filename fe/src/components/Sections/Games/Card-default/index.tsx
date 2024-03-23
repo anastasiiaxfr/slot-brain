@@ -4,7 +4,7 @@ import styles from "./styles.module.sass"
 
 export default function Card({ data }: any) {
     return (
-        <Link className={styles.card} href={'/gaems/' + data.slug}>
+        <Link className={styles.card} href={'/games/' + data.slug}>
             <div className={styles.card_wrap}>
                 <Image src={data?.img?.data?.attributes?.url} alt={data?.title} width={400} height={200} />
             </div>

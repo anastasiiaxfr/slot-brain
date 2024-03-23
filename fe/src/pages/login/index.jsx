@@ -33,6 +33,7 @@ export default function Login() {
     }
 
     if (res.jwt && res.user) {
+      //console.log(res.user.username);
       setMessage("Login successfull.");
       event.target.reset();
       router.push("/");

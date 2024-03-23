@@ -45,10 +45,10 @@ export default function Registration() {
       <article className="container page page-without-breadcrumbs">
         <form onSubmit={register} className={styles.form}>
           <div className={styles.form_row}>
-            <label htmlFor="username" className="block" autoComplete="false">
+            <label htmlFor="username" className="block">
               Username
             </label>
-            <input type="text" id="username" name="username" className="block" />
+            <input type="text" id="username" name="username" className="block" autoComplete="off" />
           </div>
 
           <div className={styles.form_row}>
