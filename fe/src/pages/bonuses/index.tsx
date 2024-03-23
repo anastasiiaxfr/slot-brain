@@ -1,7 +1,4 @@
-import { useState } from "react"
-import qs from 'qs'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
-import { fetchBonuses, shortBonusesPopulateParams } from './api'
+import { useState, useEffect } from "react";
 
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
@@ -11,11 +8,32 @@ import styles from "./styles.module.sass"
 import Select from 'react-select'
 import { og, seo, hero, filter_by_provider, filter_by_type, order } from "./constants"
 
-const BonusesParentPage = ({ bonuses }: any) => {
+import Pagination from "@/components/Pagination";
+
+
+const BonusesParentPage = () => {
     //console.log(bonuses)
     const [searchValue, setSearchValue] = useState("")
+    const [pageIndex, setPageIndex] = useState(1);
+    const [data, setData] = useState<any[]>([]);
+    const [totalPage, setTotalPage] = useState(1);
+    const pageItems = 3
 
-    const filteredCards = bonuses.data.filter(
+    useEffect(() => {
+        fetchData();
+    }, [pageIndex]);
+
+    const fetchData = async () => {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bonuses?pagination[page]=${pageIndex}&pagination[pageSize]=${pageItems}&populate=*`)
+        const json = await res.json()
+        setData(json.data)
+        setTotalPage(Math.ceil(json.meta.pagination.total / pageItems))
+
+        return json.data
+    };
+
+    const filteredCards = data.filter(
         (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || el.attributes.bonuse_type.data.attributes.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
 
@@ -63,6 +81,10 @@ const BonusesParentPage = ({ bonuses }: any) => {
                         ))}
                     </div>
 
+                    {/* PAGINATION */}
+
+                    <Pagination totalPage={totalPage} pageIndex={pageIndex} setPageIndex={setPageIndex} />
+
                     <section className={styles.cards_content}>
                         <p>
                             Red Ventures (includes “us,” “we,” or “our”) is a portfolio of brands and digital platforms (such as mobile and/or TV applications) that connect people with information to help make some of life’s most important decisions. Some examples of Red Ventures’ brands are Allconnect, Bankrate, CNET, MyMove, Online MBA, and The Points Guy. For the purposes of this Privacy Policy, the websites, apps, and products provided by Red Ventures will be referred to as the “Services.” Certain Red Ventures Services have different privacy policies (such as our Healthline Media Sites and Services in Brazil), you should check each Service for its specific policy before use.
@@ -78,32 +100,6 @@ const BonusesParentPage = ({ bonuses }: any) => {
             </Layout>
         </>
     )
-}
-
-export async function getStaticProps() {
-    const queryClient = new QueryClient()
-
-    const pgQuery = qs.stringify(
-        {
-            ...shortBonusesPopulateParams,
-            pagination: {
-                page: 1,
-                pageSize: 5,
-            },
-        },
-        {
-            encodeValuesOnly: true,
-        },
-    )
-    const bonuses: any = await fetchBonuses({ queryKey: ['bonuses', pgQuery] })
-
-    return {
-        props: {
-            dehydratedState: dehydrate(queryClient),
-            bonuses,
-        },
-        revalidate: 60 * 1,
-    }
 }
 
 

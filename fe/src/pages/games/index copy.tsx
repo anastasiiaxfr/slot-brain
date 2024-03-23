@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react"
+import qs from 'qs'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { fetchGames, shortPopulateParams } from './api'
 import Layout from "@/components/Layout"
 import Hero from "@/components/Sections/Hero"
 import Seo from "@/components/SEO"
@@ -9,30 +11,11 @@ import Select from 'react-select'
 import { og, seo, hero, filter_by_provider, filter_by_type, order } from "./constant"
 import styles from "./styles.module.sass"
 
-import Pagination from "@/components/Pagination";
 
-const GamesParentPage = () => {
+const GamesParentPage = ({ games }: any) => {
     const [searchValue, setSearchValue] = useState("")
-    const [pageIndex, setPageIndex] = useState(1);
-    const [data, setData] = useState<any[]>([]);
-    const [totalPage, setTotalPage] = useState(1);
-    const pageItems = 8
 
-    useEffect(() => {
-        fetchData();
-    }, [pageIndex]);
-
-    const fetchData = async () => {
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games?pagination[page]=${pageIndex}&pagination[pageSize]=${pageItems}&populate=*`)
-        const json = await res.json()
-        setData(json.data)
-        setTotalPage(Math.ceil(json.meta.pagination.total / pageItems))
-
-        return json.data
-    };
-
-    const filteredCards = data.filter(
+    const filteredCards = games.data.filter(
         (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
 
@@ -69,9 +52,6 @@ const GamesParentPage = () => {
                             <Card data={i.attributes} key={ind} slug={`/games/${i.attributes.slug}`} />
                         ))}
                     </div>
-                    {/* PAGINATION */}
-
-                    <Pagination totalPage={totalPage} pageIndex={pageIndex} setPageIndex={setPageIndex} />
 
                     <section className={styles.cards_content}>
                         <p>
@@ -90,6 +70,32 @@ const GamesParentPage = () => {
             </Layout>
         </>
     )
+}
+
+export async function getStaticProps() {
+    const queryClient = new QueryClient()
+
+    const pgQuery = qs.stringify(
+        {
+            ...shortPopulateParams,
+            pagination: {
+                page: 1,
+                pageSize: 5,
+            },
+        },
+        {
+            encodeValuesOnly: true,
+        },
+    )
+    const games: any = await fetchGames({ queryKey: ['games', pgQuery] })
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+            games,
+        },
+        revalidate: 60 * 1,
+    }
 }
 
 export default GamesParentPage

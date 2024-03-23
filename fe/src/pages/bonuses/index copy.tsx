@@ -1,39 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react"
+import qs from 'qs'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { fetchBonuses, shortBonusesPopulateParams } from './api'
 
 import Layout from "@/components/Layout"
-import Hero from "@/components/Sections/Hero"
 import Seo from "@/components/SEO"
-import Card from "@/components/Sections/Games/Card-default"
-import Select from 'react-select'
-
-import { og, seo, hero, filter_by_provider, filter_by_type, order } from "./constant"
+import Hero from "@/components/Sections/Hero"
+import Card from "@/components/Sections/Bonuses/Card"
 import styles from "./styles.module.sass"
+import Select from 'react-select'
+import { og, seo, hero, filter_by_provider, filter_by_type, order } from "./constants"
 
-import Pagination from "@/components/Pagination";
-
-const GamesParentPage = () => {
+const BonusesParentPage = ({ bonuses }: any) => {
+    //console.log(bonuses)
     const [searchValue, setSearchValue] = useState("")
-    const [pageIndex, setPageIndex] = useState(1);
-    const [data, setData] = useState<any[]>([]);
-    const [totalPage, setTotalPage] = useState(1);
-    const pageItems = 8
 
-    useEffect(() => {
-        fetchData();
-    }, [pageIndex]);
-
-    const fetchData = async () => {
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games?pagination[page]=${pageIndex}&pagination[pageSize]=${pageItems}&populate=*`)
-        const json = await res.json()
-        setData(json.data)
-        setTotalPage(Math.ceil(json.meta.pagination.total / pageItems))
-
-        return json.data
-    };
-
-    const filteredCards = data.filter(
-        (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    const filteredCards = bonuses.data.filter(
+        (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || el.attributes.bonuse_type.data.attributes.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
 
     return (
@@ -44,34 +27,41 @@ const GamesParentPage = () => {
             />
 
             <Layout>
-                <Hero data={hero} setSearchValue={setSearchValue} search="Search by Game Name" />
+                <Hero data={hero} setSearchValue={setSearchValue} search="Search by bonus name or type" />
+
                 {/* <section className="container">
                     <div className="filters">
-                        <div>
-                            <span>Order By:</span>
-                            <Select options={order} />
-
-                        </div>
-                        <div>
-                            <span>Provider:</span>
-                            <Select options={filter_by_provider} />
-
-                        </div>
                         <div>
                             <span>Type:</span>
                             <Select options={filter_by_type} />
                         </div>
+                        <div>
+                            <span>FreeSpins:</span>
+                            <Select options={filter_by_provider} />
+
+                        </div>
+
+                        <div>
+                            <span>Payment Methods:</span>
+                            <Select options={filter_by_type} />
+                        </div>
+                        <div>
+                            <span> GEO:</span>
+                            <Select options={filter_by_type} />
+                        </div>
+                        <div>
+                            <span>Currencies:</span>
+                            <Select options={filter_by_type} />
+                        </div>
                     </div>
                 </section> */}
+
                 <article className={`container page ${styles.cards_wrap}`}>
                     <div className={styles.cards}>
                         {filteredCards.map((i: any, ind: number) => (
-                            <Card data={i.attributes} key={ind} slug={`/games/${i.attributes.slug}`} />
+                            <Card key={ind} data={i.attributes} />
                         ))}
                     </div>
-                    {/* PAGINATION */}
-
-                    <Pagination totalPage={totalPage} pageIndex={pageIndex} setPageIndex={setPageIndex} />
 
                     <section className={styles.cards_content}>
                         <p>
@@ -85,11 +75,36 @@ const GamesParentPage = () => {
                         </p>
                     </section>
                 </article>
-
-
             </Layout>
         </>
     )
 }
 
-export default GamesParentPage
+export async function getStaticProps() {
+    const queryClient = new QueryClient()
+
+    const pgQuery = qs.stringify(
+        {
+            ...shortBonusesPopulateParams,
+            pagination: {
+                page: 1,
+                pageSize: 5,
+            },
+        },
+        {
+            encodeValuesOnly: true,
+        },
+    )
+    const bonuses: any = await fetchBonuses({ queryKey: ['bonuses', pgQuery] })
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+            bonuses,
+        },
+        revalidate: 60 * 1,
+    }
+}
+
+
+export default BonusesParentPage

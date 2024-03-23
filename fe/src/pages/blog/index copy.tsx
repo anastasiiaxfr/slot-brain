@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import qs from "qs";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import { fetchBlogs, shortBlogsPopulateParams } from "./api";
 
 import Layout from "@/components/Layout";
 import Seo from "@/components/SEO";
@@ -13,31 +16,13 @@ import styles from "./styles.module.sass";
 
 import { seo, og, hero } from "./constants";
 
-const BlogParentPage = () => {
+const BlogParentPage = ({ blogs }: any) => {
     const [searchValue, setSearchValue] = useState("");
-    const [pageIndex, setPageIndex] = useState(1);
-    const [data, setData] = useState<any[]>([]);
-    const [totalPage, setTotalPage] = useState(1);
-    const pageItems = 7
+    const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(() => {
-        fetchData();
-    }, [pageIndex]);
-
-    const fetchData = async () => {
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs?pagination[page]=${pageIndex}&pagination[pageSize]=${pageItems}&populate=*`)
-        const json = await res.json()
-        setData(json.data)
-        setTotalPage(Math.ceil(json.meta.pagination.total / pageItems))
-
-        return json.data
-    };
-
-
-    const filteredPosts = data && data.filter((el: any) =>
-        el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()));
-
+    const filteredPosts = blogs.data.filter((el: any) =>
+        el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
 
     const breadcrumbs = {
         current: {
@@ -71,13 +56,13 @@ const BlogParentPage = () => {
                         {/* <h2>Editor Choise</h2> */}
 
                         <div className={styles.blog_sections_all}>
-                            {filteredPosts?.map((i: any, ind: number) => (
+                            {filteredPosts.slice(0, blogs.data.length).map((i: any, ind: number) => (
                                 <Card key={ind} data={i.attributes} slug={`blog/${i.attributes.slug}`} />
                             ))}
                         </div>
                         {/* PAGINATION */}
 
-                        <Pagination totalPage={totalPage} pageIndex={pageIndex} setPageIndex={setPageIndex} />
+
 
                     </section>
                 </article>
@@ -86,6 +71,31 @@ const BlogParentPage = () => {
     );
 };
 
+export async function getStaticProps() {
+    const queryClient = new QueryClient();
 
+
+    const blogsQuery = qs.stringify(
+        {
+            ...shortBlogsPopulateParams,
+            pagination: {
+                page: 1,
+                pageSize: 5,
+            },
+        },
+        {
+            encodeValuesOnly: true,
+        }
+    );
+    const blogs: any = await fetchBlogs({ queryKey: ["blogs", blogsQuery] });
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+            blogs,
+        },
+        revalidate: 60 * 1,
+    };
+}
 
 export default BlogParentPage;

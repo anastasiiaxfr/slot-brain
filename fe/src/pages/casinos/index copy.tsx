@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react"
 
+import qs from 'qs'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
+import { fetchCasinos, shortPopulateParams } from './api'
 import Layout from "@/components/Layout"
 import Seo from "@/components/SEO"
 import Card from "@/components/Sections/Casino/Card-default"
@@ -7,32 +10,12 @@ import Hero from "@/components/Sections/Hero"
 import Sidebar from "./sidebar"
 import styles from "./styles.module.sass"
 
-import Pagination from "@/components/Pagination";
-
 import { og, seo, hero } from "./constants"
 
-const CasinosParentPage = () => {
+const CasinosParentPage = ({ casinos }: any) => {
     const [searchValue, setSearchValue] = useState("")
-    const [pageIndex, setPageIndex] = useState(1);
-    const [data, setData] = useState<any[]>([]);
-    const [totalPage, setTotalPage] = useState(1);
-    const pageItems = 8
 
-    useEffect(() => {
-        fetchData();
-    }, [pageIndex]);
-
-    const fetchData = async () => {
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/casinos?pagination[page]=${pageIndex}&pagination[pageSize]=${pageItems}&populate=*`)
-        const json = await res.json()
-        setData(json.data)
-        setTotalPage(Math.ceil(json.meta.pagination.total / pageItems))
-
-        return json.data
-    };
-
-    const filteredCards = data.filter(
+    const filteredCards = casinos.data.filter(
         (el: any) => el.attributes.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
     );
 
@@ -56,9 +39,6 @@ const CasinosParentPage = () => {
                                 <Card data={i.attributes} key={ind} />
                             ))}
                         </div>
-                        {/* PAGINATION */}
-
-                        <Pagination totalPage={totalPage} pageIndex={pageIndex} setPageIndex={setPageIndex} />
 
                         <section className={styles.cards_content}>
                             <p>
@@ -78,6 +58,32 @@ const CasinosParentPage = () => {
             </Layout>
         </>
     )
+}
+
+export async function getStaticProps() {
+    const queryClient = new QueryClient()
+
+    const pgQuery = qs.stringify(
+        {
+            ...shortPopulateParams,
+            pagination: {
+                page: 1,
+                pageSize: 5,
+            },
+        },
+        {
+            encodeValuesOnly: true,
+        },
+    )
+    const casinos: any = await fetchCasinos({ queryKey: ['casinos', pgQuery] })
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+            casinos,
+        },
+        revalidate: 60 * 1,
+    }
 }
 
 export default CasinosParentPage
